@@ -804,3 +804,18 @@ h2, h3 { letter-spacing: -0.01em; }
   .steps h3 { font-size: .875rem; }
   .steps p { display: none; }
 }
+
+/* v14: tighter mobile hero and reviews */
+@media (max-width: 47.99em) {
+  .hero2__h { font-size: 12.5vw; }
+  .hero2__photo { width: 72%; margin: .25rem auto 0; }
+  .hero2__bubble { font-size: .9375rem; padding: .9rem 1.1rem; }
+  .hero2__open b { font-size: 1.2rem; }
+  .reviews { padding-block: 3.5rem; }
+  .slide { gap: 1rem; padding: 1.25rem; }
+  .slide__pic { aspect-ratio: auto; display: grid; grid-template-columns: 4rem 1fr; align-items: center; gap: .75rem; background: none; border-radius: 0; overflow: visible; }
+  .slide__pic img { width: 4rem; height: 4rem; border-radius: 50%; object-position: 50% 20%; }
+  .slide__pic figcaption { position: static; padding: 0; background: none; box-shadow: none; font-size: .9375rem; }
+  .slide__quote p { margin-top: .75rem; font-size: 1.0625rem; line-height: 1.45; }
+  .slide__quote footer { margin-top: 1rem; font-size: .875rem; }
+}
