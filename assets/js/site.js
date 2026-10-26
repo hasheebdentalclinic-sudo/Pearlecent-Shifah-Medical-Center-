@@ -86,14 +86,15 @@
       const lines = ['Hello Pearlecent, I would like to book an appointment.'];
       const name = (f.get('name') || '').toString().trim();
       if (name) lines.push('Name: ' + name);
+      const mob = (f.get('mobile') || '').toString().trim();
+      if (mob) lines.push('Mobile: ' + mob);
       if (t.length) lines.push('Treatment: ' + t.join(', '));
       lines.push('Dentist: ' + (f.get('dentist') || 'Any dentist'));
       lines.push('Day: ' + (f.get('day') || 'Any day'));
       lines.push('Time: ' + (f.get('time') || 'Any time'));
       const msg = lines.join('\n');
-      preview.textContent = msg; hidden.value = msg;
-      preview.classList.remove('is-pulse'); void preview.offsetWidth; preview.classList.add('is-pulse');
-      setTimeout(() => preview.classList.remove('is-pulse'), 240);
+      hidden.value = msg;
+      if (preview) { preview.textContent = msg; }
       return msg;
     };
     form.addEventListener('change', build);
