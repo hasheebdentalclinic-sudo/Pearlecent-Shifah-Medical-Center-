@@ -12,7 +12,7 @@
 <link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/site.css?v=15">
+<link rel="stylesheet" href="../assets/css/site.css?v=16">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dentist","name":"Pearlecent Shifah Medical Center L.L.C.","telephone":"+971 55 339 6152","address":{"@type":"PostalAddress","streetAddress":"Room 104, Al Zarooni Building, 73 Al Rigga Road","addressLocality":"Deira, Dubai","addressCountry":"AE"},"geo":{"@type":"GeoCoordinates","latitude":25.2624015,"longitude":55.3266563},"openingHours":["Sa-Th 09:00-22:00","Fr 13:00-21:00"],"sameAs":["https://www.instagram.com/pearlescent_dental","https://www.tiktok.com/@pearlecentshifah"]}</script>
 </head>
@@ -63,16 +63,18 @@
       <ol class="steps"><li data-reveal style="--n:0"><span class="steps__n">1</span><h3>Choose</h3><p>Pick the treatment, a dentist if you have one in mind, and the day and time that suit you.</p></li><li data-reveal style="--n:1"><span class="steps__n">2</span><h3>Send your request</h3><p>Your details are prepared for you. Press send and they reach our front desk directly.</p></li><li data-reveal style="--n:2"><span class="steps__n">3</span><h3>We confirm</h3><p>Our team confirms your appointment time. Visit us at Room 104, Al Zarooni Building.</p></li></ol>
     </div>
     <div class="book__card" data-reveal><form class="sheet" data-composer action="https://wa.me/971553396152" method="get" novalidate>
-  <fieldset class="group"><legend>What do you need?</legend><div class="picks"><label class="pick"><input type="checkbox" name="treatment" value="General Dental Consultation (Free)"><span>General Dental Consultation (Free)</span></label><label class="pick"><input type="checkbox" name="treatment" value="Orthodontic Consultation"><span>Orthodontic Consultation</span></label><label class="pick"><input type="checkbox" name="treatment" value="Braces (Metal, Ceramic &amp; Damon)"><span>Braces (Metal, Ceramic &amp; Damon)</span></label><label class="pick"><input type="checkbox" name="treatment" value="Clear Aligners / Invisalign"><span>Clear Aligners / Invisalign</span></label><label class="pick"><input type="checkbox" name="treatment" value="Dental Cleaning &amp; Polishing"><span>Dental Cleaning &amp; Polishing</span></label><label class="pick"><input type="checkbox" name="treatment" value="Teeth Whitening"><span>Teeth Whitening</span></label><label class="pick"><input type="checkbox" name="treatment" value="Dental Veneers"><span>Dental Veneers</span></label><label class="pick"><input type="checkbox" name="treatment" value="Dental Filling"><span>Dental Filling</span></label><label class="pick"><input type="checkbox" name="treatment" value="Tooth Extraction"><span>Tooth Extraction</span></label><label class="pick"><input type="checkbox" name="treatment" value="Dental Crowns &amp; Bridges"><span>Dental Crowns &amp; Bridges</span></label><label class="pick"><input type="checkbox" name="treatment" value="Root Canal Treatment"><span>Root Canal Treatment</span></label><label class="pick"><input type="checkbox" name="treatment" value="Dentures &amp; Retainers"><span>Dentures &amp; Retainers</span></label><label class="pick"><input type="checkbox" name="treatment" value="Cosmetic Dentistry"><span>Cosmetic Dentistry</span></label><label class="pick"><input type="checkbox" name="treatment" value="Other Dental Treatments"><span>Other Dental Treatments</span></label></div></fieldset>
-  <input type="hidden" name="dentist" value="Dr. Nasira Abbas">
-  <fieldset class="group"><legend>Preferred day</legend><div class="chips" data-days><label class="chip"><input type="radio" name="day" value="" checked><span>Any day</span></label></div></fieldset>
-  <fieldset class="group"><legend>Preferred time</legend><div class="chips">
-    <label class="chip"><input type="radio" name="time" value="" checked><span>Any time</span></label>
-    <label class="chip" data-morning><input type="radio" name="time" value="Morning (9 AM – 12 PM)"><span>Morning</span></label>
-    <label class="chip"><input type="radio" name="time" value="Afternoon (12 – 5 PM)"><span>Afternoon</span></label>
-    <label class="chip"><input type="radio" name="time" value="Evening (5 – 10 PM)"><span>Evening</span></label>
-  </div></fieldset>
-  <label class="group"><span class="legend">Your name</span><input class="field" type="text" name="name" autocomplete="name" placeholder="Maria Santos"></label>
+  <div class="sheet__fields">
+    <label class="fld fld--wide"><span class="fld__l">Treatment</span><span class="sel"><select class="field" name="treatment"><option value="">Choose a treatment</option><option value="General Dental Consultation (Free)">General Dental Consultation (Free)</option><option value="Orthodontic Consultation">Orthodontic Consultation</option><option value="Braces (Metal, Ceramic &amp; Damon)">Braces (Metal, Ceramic &amp; Damon)</option><option value="Clear Aligners / Invisalign">Clear Aligners / Invisalign</option><option value="Dental Cleaning &amp; Polishing">Dental Cleaning &amp; Polishing</option><option value="Teeth Whitening">Teeth Whitening</option><option value="Dental Veneers">Dental Veneers</option><option value="Dental Filling">Dental Filling</option><option value="Tooth Extraction">Tooth Extraction</option><option value="Dental Crowns &amp; Bridges">Dental Crowns &amp; Bridges</option><option value="Root Canal Treatment">Root Canal Treatment</option><option value="Dentures &amp; Retainers">Dentures &amp; Retainers</option><option value="Cosmetic Dentistry">Cosmetic Dentistry</option><option value="Other Dental Treatments">Other Dental Treatments</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <input type="hidden" name="dentist" value="Dr. Nasira Abbas">
+    <label class="fld"><span class="fld__l">Preferred day</span><span class="sel"><select class="field" name="day" data-days><option value="">Any day</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <label class="fld"><span class="fld__l">Preferred time</span><span class="sel"><select class="field" name="time">
+      <option value="">Any time</option>
+      <option value="Morning (9 AM – 12 PM)" data-morning>Morning (9 AM – 12 PM)</option>
+      <option value="Afternoon (12 – 5 PM)">Afternoon (12 – 5 PM)</option>
+      <option value="Evening (5 – 10 PM)">Evening (5 – 10 PM)</option>
+    </select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <label class="fld fld--wide"><span class="fld__l">Your name</span><input class="field" type="text" name="name" autocomplete="name" placeholder="Maria Santos"></label>
+  </div>
   <input type="hidden" name="text" value="Hello Pearlecent, I would like to book an appointment.">
   <div class="sheet__send">
     <div class="phone" aria-live="polite">
@@ -136,6 +138,6 @@
     <p><a href="../about.html">About</a><a href="../treatments.html">Treatments</a><a href="../index.html#visit">Contact</a></p></div>
 </footer>
 <a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
-<script src="../assets/js/site.js?v=15" defer></script>
+<script src="../assets/js/site.js?v=16" defer></script>
 </body>
 </html>

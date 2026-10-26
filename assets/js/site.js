@@ -58,33 +58,31 @@
   // the WhatsApp booking form
   $$('[data-composer]').forEach((form) => {
     const days = form.querySelector('[data-days]');
-    const morning = form.querySelector('[data-morning] input');
+    const morning = form.querySelector('option[data-morning]');
+    const timeSel = form.querySelector('select[name="time"]');
     const fmt = new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'Asia/Dubai' });
     const wk = new Intl.DateTimeFormat('en-GB', { weekday: 'long', timeZone: 'Asia/Dubai' });
     const now = Date.now();
     for (let i = 0; i < 7; i++) {
       const d = new Date(now + i * 864e5);
       const label = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : fmt.format(d);
-      const l = document.createElement('label');
-      l.className = 'chip';
-      l.innerHTML = '<input type="radio" name="day"><span></span>';
-      const inp = l.querySelector('input');
-      inp.value = (i < 2 ? label + ', ' : '') + fmt.format(d);
-      inp.dataset.friday = wk.format(d) === 'Friday' ? '1' : '';
-      l.querySelector('span').textContent = label;
-      days.appendChild(l);
+      const o = document.createElement('option');
+      o.value = (i < 2 ? label + ', ' : '') + fmt.format(d);
+      o.textContent = i < 2 ? label + ' (' + fmt.format(d) + ')' : label;
+      o.dataset.friday = wk.format(d) === 'Friday' ? '1' : '';
+      days.appendChild(o);
     }
     const preview = form.querySelector('[data-preview]');
     const hidden = form.querySelector('input[name="text"]');
     const build = () => {
       const f = new FormData(form);
-      const day = form.querySelector('input[name="day"]:checked');
+      const day = days.selectedOptions[0];
       if (morning) {
         const fri = day && day.dataset.friday === '1';
         morning.disabled = fri;
-        if (fri && morning.checked) form.querySelector('input[name="time"][value=""]').checked = true;
+        if (fri && morning.selected) timeSel.value = '';
       }
-      const t = f.getAll('treatment');
+      const t = f.getAll('treatment').filter(Boolean);
       const lines = ['Hello Pearlecent, I would like to book an appointment.'];
       const name = (f.get('name') || '').toString().trim();
       if (name) lines.push('Name: ' + name);

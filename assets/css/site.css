@@ -779,3 +779,16 @@ h2, h3 { letter-spacing: -0.01em; }
   .cat__bar small { font-size: .6875rem; }
 }
 .cat__bar { flex: 1; align-content: center; }
+
+/* v12: compact booking form with drop-down fields */
+.sheet__fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+.fld { display: grid; gap: .45rem; min-width: 0; }
+.fld--wide { grid-column: 1 / -1; }
+.fld__l { font-weight: 600; font-size: .9375rem; color: var(--ink); }
+.sel { position: relative; display: block; }
+.sel .field { appearance: none; -webkit-appearance: none; width: 100%; padding-right: 2.75rem; cursor: pointer; text-overflow: ellipsis; }
+.sel__ch { position: absolute; right: 1rem; top: 50%; width: 1.1rem; height: 1.1rem; transform: translateY(-50%); fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+@media (max-width: 47.99em) {
+  .sheet__fields { grid-template-columns: 1fr; gap: .9rem; }
+}
+.sel .field, .sel .field option { font: inherit; color: var(--ink); }
