@@ -819,3 +819,15 @@ h2, h3 { letter-spacing: -0.01em; }
   .slide__quote p { margin-top: .75rem; font-size: 1.0625rem; line-height: 1.45; }
   .slide__quote footer { margin-top: 1rem; font-size: .875rem; }
 }
+
+/* v15: close the gap between the banner strip and treatments */
+.band { padding-bottom: clamp(2rem, 4vw, 3.5rem); }
+.cats { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+@media (max-width: 47.99em) {
+  .band { padding-bottom: 1.25rem; }
+  .cats { padding-top: 1.25rem; padding-bottom: 3rem; }
+  .cats .sec-head { margin-bottom: 1.25rem; gap: .5rem; }
+  .cats__top { margin-bottom: 1.25rem; gap: 1rem; }
+  .cats__feat { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; width: 100%; }
+  .cats__feat li { flex-direction: column; text-align: center; font-size: .6875rem; line-height: 1.25; gap: .4rem; }
+}
