@@ -163,3 +163,63 @@
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit);
   addEventListener('resize', fit);
 })();
+
+// branded pickers: replace the phone's grey system list with a pink sheet
+(() => {
+  const sels = [...document.querySelectorAll('.sel select')];
+  if (!sels.length) return;
+  const TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  let open = null;
+  const close = () => {
+    if (!open) return;
+    const { sheet, btn } = open; open = null;
+    sheet.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('pk-lock');
+    setTimeout(() => sheet.remove(), 260);
+    btn.focus({ preventScroll: true });
+  };
+  sels.forEach((sel) => {
+    const wrap = sel.closest('.sel');
+    const label = wrap.closest('.fld')?.querySelector('.fld__l')?.textContent || '';
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'field pk-btn'; btn.setAttribute('aria-haspopup', 'listbox'); btn.setAttribute('aria-expanded', 'false');
+    const val = document.createElement('span'); val.className = 'pk-val'; btn.appendChild(val);
+    const sync = () => { const o = sel.selectedOptions[0]; val.textContent = o ? o.textContent : ''; btn.classList.toggle('is-empty', !sel.value); };
+    sel.classList.add('pk-native'); sel.tabIndex = -1; sel.setAttribute('aria-hidden', 'true');
+    wrap.insertBefore(btn, sel); sync();
+    sel.addEventListener('change', sync);
+    btn.addEventListener('click', () => {
+      close();
+      const sheet = document.createElement('div');
+      sheet.className = 'pk';
+      sheet.innerHTML = `<div class="pk__scrim" data-x></div><div class="pk__panel" role="dialog" aria-label="${label}"><div class="pk__head"><span class="pk__grab"></span><b>${label}</b><button type="button" class="pk__x" data-x aria-label="Close">×</button></div><ul class="pk__list" role="listbox"></ul></div>`;
+      const list = sheet.querySelector('.pk__list');
+      [...sel.options].forEach((o, i) => {
+        const li = document.createElement('li');
+        li.setAttribute('role', 'option'); li.tabIndex = o.disabled ? -1 : 0;
+        li.className = 'pk__opt' + (o.selected ? ' is-on' : '') + (o.disabled ? ' is-off' : '') + (o.value === '' ? ' is-any' : '');
+        li.setAttribute('aria-selected', o.selected); li.innerHTML = `<span></span><i>${TICK}</i>`;
+        li.firstChild.textContent = o.textContent + (o.disabled ? ' · closed on Friday' : '');
+        const pick = () => { if (o.disabled) return; sel.selectedIndex = i; sel.dispatchEvent(new Event('change', { bubbles: true })); close(); };
+        li.addEventListener('click', pick);
+        li.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } if (e.key === 'ArrowDown') li.nextElementSibling?.focus(); if (e.key === 'ArrowUp') li.previousElementSibling?.focus(); });
+        list.appendChild(li);
+      });
+      sheet.addEventListener('click', (e) => { if (e.target.closest('[data-x]')) close(); });
+      document.body.appendChild(sheet);
+      if (innerWidth >= 768) {
+        const r = btn.getBoundingClientRect(), panel = sheet.querySelector('.pk__panel');
+        panel.style.left = r.left + 'px'; panel.style.width = Math.max(r.width, 280) + 'px';
+        const below = innerHeight - r.bottom - 16;
+        if (below > 260) { panel.style.top = (r.bottom + 6) + 'px'; panel.style.maxHeight = below + 'px'; }
+        else { panel.style.bottom = (innerHeight - r.top + 6) + 'px'; panel.style.maxHeight = (r.top - 16) + 'px'; }
+      } else document.documentElement.classList.add('pk-lock');
+      open = { sheet, btn };
+      btn.setAttribute('aria-expanded', 'true');
+      requestAnimationFrame(() => { sheet.classList.add('is-open'); (list.querySelector('.is-on') || list.firstChild).focus({ preventScroll: true }); list.querySelector('.is-on')?.scrollIntoView({ block: 'center' }); });
+    });
+  });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  addEventListener('resize', close);
+  addEventListener('scroll', () => { if (open && innerWidth >= 768) close(); }, { passive: true });
+})();
