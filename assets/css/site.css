@@ -724,3 +724,15 @@ h2, h3 { letter-spacing: -0.01em; }
 @media (max-width: 47.99em) {
   .hero2__photo { width: 90%; margin: 1rem auto .25rem; }
 }
+
+/* v10: Tabby / Tamara payment badges in hero */
+.hero2__left { gap: 1.1rem; }
+.paybnpl { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem .75rem; margin-top: -.1rem; }
+.paybnpl__t { font-size: .875rem; color: var(--soft); }
+.paybnpl__logos { display: inline-flex; align-items: center; gap: .5rem; }
+.paybnpl__tabby { height: 30px; width: auto; display: block; }
+.paybnpl__tamara { height: 30px; display: inline-flex; align-items: center; padding: 0 .75rem; background: #fff; border-radius: 8px; box-shadow: 0 0 0 1px rgba(22, 24, 29, .08); }
+.paybnpl__tamara img { height: 13px; width: auto; display: block; }
+@media (max-width: 47.99em) {
+  .paybnpl__t { width: 100%; }
+}
