@@ -792,3 +792,15 @@ h2, h3 { letter-spacing: -0.01em; }
   .sheet__fields { grid-template-columns: 1fr; gap: .9rem; }
 }
 .sel .field, .sel .field option { font: inherit; color: var(--ink); }
+
+/* v13: shorter booking intro */
+.steps { margin-top: 2rem; gap: 1.1rem; }
+@media (max-width: 47.99em) {
+  .book__side h2 { font-size: 2rem; }
+  .book__lead { font-size: 1rem; margin-top: .5rem; }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-top: 1.25rem; }
+  .steps li { grid-template-columns: 1fr; justify-items: center; text-align: center; row-gap: .4rem; padding: .75rem .4rem; border-radius: 16px; background: rgba(255, 255, 255, .06); }
+  .steps__n { grid-row: auto; width: 2rem; height: 2rem; font-size: .875rem; }
+  .steps h3 { font-size: .875rem; }
+  .steps p { display: none; }
+}
