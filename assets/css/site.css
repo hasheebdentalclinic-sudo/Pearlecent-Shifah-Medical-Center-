@@ -699,3 +699,28 @@ h2, h3 { letter-spacing: -0.01em; }
   .hero2__tooth { width: 62%; max-width: 15rem; margin: -1.5rem auto .75rem; }
   .hero2__stats { margin-top: 1.5rem; }
 }
+
+/* v9: smiling-woman hero photo with live sparkle animation */
+.hero2__card { background: linear-gradient(100deg, #FCE4EB 0%, #FDEEF2 50%, #FCE3EA 100%); overflow: hidden; }
+.hero2__photo { position: absolute; z-index: 2; left: 50%; bottom: 0; height: 100%; aspect-ratio: 840 / 845; transform: translateX(-50%); pointer-events: none; }
+.hero2__float { position: relative; width: 100%; height: 100%; }
+.hero2__photo img { width: 100%; height: 100%; object-fit: cover; -webkit-mask-image: radial-gradient(ellipse 60% 76% at 50% 54%, #000 58%, transparent 100%); mask-image: radial-gradient(ellipse 60% 76% at 50% 54%, #000 58%, transparent 100%); }
+.hero2__glint { position: absolute; left: var(--x); top: var(--y); width: 4.2%; aspect-ratio: 1; transform: translate(-50%, -50%) scale(0); }
+.hero2__glint--s { width: 2.6%; }
+.hero2__glint svg { width: 100%; height: 100%; fill: #fff; filter: drop-shadow(0 0 6px rgba(255,255,255,.95)) drop-shadow(0 0 12px rgba(255,170,200,.8)); }
+.hero2__heart { position: absolute; left: var(--x); top: var(--y); width: 7%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero2__float { opacity: 0; transform: translateY(40px) scale(.96); animation: smile-in 1300ms var(--ease-expo) 250ms forwards, smile-breathe 7s ease-in-out 1.8s infinite; }
+  .hero2__glint { animation: glint 3.2s ease-in-out var(--d) infinite; }
+  .hero2__heart { animation: heart-ping 2.4s ease-out 2s infinite; }
+}
+@keyframes smile-in { to { opacity: 1; transform: none; } }
+@keyframes smile-breathe { 0%, 100% { translate: 0 0; scale: 1; } 50% { translate: 0 -8px; scale: 1.015; } }
+@keyframes glint { 0%, 100% { transform: translate(-50%, -50%) scale(0) rotate(0); opacity: 0; } 12% { transform: translate(-50%, -50%) scale(1.15) rotate(45deg); opacity: 1; } 26% { transform: translate(-50%, -50%) scale(0) rotate(90deg); opacity: 0; } }
+@keyframes heart-ping { 0% { box-shadow: 0 0 0 0 rgba(242, 52, 116, .45); } 70%, 100% { box-shadow: 0 0 0 22px rgba(242, 52, 116, 0); } }
+@media (max-width: 64em) {
+  .hero2__photo { position: relative; left: auto; bottom: auto; transform: none; height: auto; width: min(70%, 26rem); grid-column: 1 / -1; justify-self: center; margin: -1rem 0 .5rem; }
+}
+@media (max-width: 47.99em) {
+  .hero2__photo { width: 90%; margin: 1rem auto .25rem; }
+}
