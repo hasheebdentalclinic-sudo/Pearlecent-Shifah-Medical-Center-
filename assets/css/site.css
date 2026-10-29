@@ -880,3 +880,14 @@ h2, h3 { letter-spacing: -0.01em; }
   .cats .sec-head p { font-size: .875rem; }
   .band { padding-bottom: 3.5rem; }
 }
+
+/* v18: remove the empty band between hero and treatments */
+.hero2 { padding-bottom: 0; }
+.cats { padding-top: clamp(2rem, 3.5vw, 3rem); }
+.cats__h { white-space: nowrap; }
+.cats .sec-head { align-items: center; }
+.cats .sec-head p { white-space: nowrap; }
+@media (max-width: 47.99em) {
+  .cats { padding-top: 1.75rem; }
+  .cats__h { font-size: 1.6rem; }
+}
