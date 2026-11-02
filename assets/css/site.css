@@ -908,3 +908,32 @@ h2, h3 { letter-spacing: -0.01em; }
   .hero2__g em { font-size: .75rem; }
   .paybnpl__tabby, .paybnpl__tamara { height: 38px; }
 }
+
+/* v20: mobile polish for hero stats and treatments intro */
+.show-sm { display: none; }
+@media (max-width: 47.99em) {
+  .hide-sm { display: none; }
+  .show-sm { display: inline; }
+  .hero2__stats { gap: .5rem; margin-top: 1.25rem; align-items: start; }
+  .hero2__stats b { font-size: 1.6rem; }
+  .hero2__stats span:not([data-count]), .hero2__g span { font-size: .75rem; line-height: 1.35; margin-top: .25rem; }
+  .hero2__g em { font-size: .75rem; margin-top: .3rem; }
+  .hero2__g span.show-sm, .hero2__g span.hide-sm { margin: 0; font-size: inherit; display: inline; }
+  .hero2__g span.hide-sm { display: none; }
+  .hero2__card { padding-bottom: 1.5rem; }
+  .paybnpl__tabby, .paybnpl__tamara { height: 34px; }
+  .paybnpl__tamara img { height: 15px; }
+  .paybnpl__t { font-size: .8125rem; }
+  .cats__feat li { font-size: .625rem; }
+  .cats__ic { width: 2.4rem; height: 2.4rem; }
+  .cats__ic svg { width: 1.2rem; height: 1.2rem; }
+  .cats__free { padding: .55rem 1.25rem .55rem .6rem; gap: .7rem; }
+  .cats__free b { font-size: 1.75rem; }
+  .cats__free span { font-size: .8125rem; }
+  .cats__free-ic { width: 2.5rem; height: 2.5rem; }
+  .cats__free-ic svg { width: 1.2rem; height: 1.2rem; }
+}
+@media (max-width: 47.99em) {
+  .hero2__left p:has(> .button--xl) { width: 100%; }
+  .hero2__left .button--xl { width: 100%; justify-content: center; min-height: 3.5rem; font-size: 1rem; }
+}
