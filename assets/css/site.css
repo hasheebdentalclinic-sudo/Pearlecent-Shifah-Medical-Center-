@@ -937,3 +937,7 @@ h2, h3 { letter-spacing: -0.01em; }
   .hero2__left p:has(> .button--xl) { width: 100%; }
   .hero2__left .button--xl { width: 100%; justify-content: center; min-height: 3.5rem; font-size: 1rem; }
 }
+.ftr a.link-u, .visit__tel a { overflow-wrap: anywhere; }
+.hdr__extra .hdr__tel { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.hdr__extra .hdr__tel a { min-width: 0; }
+.hdr__extra .hdr__tel a:last-child { grid-column: 1 / -1; overflow-wrap: anywhere; }
