@@ -166,3 +166,22 @@ select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmln
   .drow .rowacts { grid-column: 1 / -1; }
   h1 { font-size: 1.35rem; }
 }
+
+/* phone app & notifications */
+[hidden] { display: none !important; }
+.app-card { margin-bottom: 1.5rem; }
+.app-card > .muted { margin: -.5rem 0 1rem; }
+.steps-list { list-style: none; margin: 0 0 1.25rem; padding: 0; display: grid; gap: .75rem; }
+.steps-list li { display: grid; gap: .6rem; padding: 1rem; border-radius: 14px; background: var(--mist); }
+.steps-list .howto { font-size: .9rem; color: var(--ink); line-height: 1.55; }
+.steps-list .err { color: var(--err); }
+.st--done { display: flex; align-items: center; justify-content: space-between; gap: .5rem; color: var(--ok); font-weight: 500; }
+.shr { display: inline-grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 6px; background: #fff; color: #0A7AFF; font-size: .8rem; }
+.sub { font-size: .95rem; margin: .25rem 0 .5rem; }
+.devs { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .4rem; }
+.devs li { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .6rem .75rem; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--line); }
+.nudge { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem; text-decoration: none; color: var(--ink); background: linear-gradient(135deg, #fff, var(--mist)); }
+.nudge__ic { font-size: 1.5rem; }
+.nudge span:nth-child(2) { display: grid; flex: 1; }
+.nudge small { color: var(--soft); }
+.nudge__go { color: var(--pink); font-weight: 600; white-space: nowrap; }

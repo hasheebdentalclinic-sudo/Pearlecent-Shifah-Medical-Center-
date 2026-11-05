@@ -2,6 +2,7 @@
 // Saves a booking request (or a chat-button click) before the visitor is sent on to WhatsApp.
 declare(strict_types=1);
 require __DIR__ . '/../inc/db.php';
+require __DIR__ . '/../inc/push.php';
 
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store');
@@ -54,4 +55,13 @@ $db->prepare("INSERT INTO leads (created_at,type,name,mobile,treatment,dentist,p
    ->execute([now_utc(), $lead['type'], $lead['name'], $lead['mobile'], $lead['treatment'], $lead['dentist'],
               $lead['pref_day'], $lead['pref_time'], $lead['page'], $iph, mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 200)]);
 
+$lead['id'] = (int) $db->lastInsertId();
+
 http_response_code(204);
+// Answer the visitor first, then tell the clinic's phones.
+if ($type === 'Appointment request') {
+    ignore_user_abort(true);
+    if (function_exists('fastcgi_finish_request')) fastcgi_finish_request();
+    elseif (function_exists('litespeed_finish_request')) litespeed_finish_request();
+    try { push_new_lead($lead); } catch (Throwable $e) { error_log('Pearlecent push: ' . $e->getMessage()); }
+}

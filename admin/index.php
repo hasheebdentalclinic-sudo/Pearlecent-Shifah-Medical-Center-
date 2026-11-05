@@ -2,6 +2,8 @@
 // Pearlecent admin panel: leads, before/after gallery, dentists, account.
 declare(strict_types=1);
 require __DIR__ . '/../inc/admin.php';
+require __DIR__ . '/../inc/push.php';
+push_table();
 
 admin_headers();
 admin_session();
@@ -65,6 +67,25 @@ if ($page === 'leads' && isset($_GET['export'])) {
         fputcsv($out, array_map($safe, [dubai_time($r['created_at'], 'Y-m-d H:i'), $r['type'], $r['name'], $r['mobile'], $r['treatment'], $r['dentist'], $r['pref_day'], $r['pref_time'], $STATUSES[$r['status']] ?? $r['status'], $r['note'], $r['page']]));
     }
     exit;
+}
+
+// ------------------------------------------------------------ phone app: save / remove this phone (JSON)
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && in_array($_POST['action'] ?? '', ['push_subscribe', 'push_unsubscribe'], true)) {
+    header('Content-Type: application/json');
+    if (!csrf_ok()) { http_response_code(403); exit('{"ok":false,"error":"expired"}'); }
+    $ep = (string) ($_POST['endpoint'] ?? '');
+    if (!preg_match('~^https://[A-Za-z0-9.-]+(:\d+)?/\S{10,1000}$~', $ep)) { http_response_code(400); exit('{"ok":false}'); }
+    if ($_POST['action'] === 'push_unsubscribe') {
+        $db->prepare('DELETE FROM push_subs WHERE endpoint = ?')->execute([$ep]);
+        exit('{"ok":true}');
+    }
+    $p256 = (string) ($_POST['p256dh'] ?? ''); $auth = (string) ($_POST['auth'] ?? '');
+    if (strlen(b64u_dec($p256)) !== 65 || strlen(b64u_dec($auth)) !== 16) { http_response_code(400); exit('{"ok":false}'); }
+    $label = mb_substr(trim((string) ($_POST['label'] ?? 'Phone')), 0, 60);
+    $db->prepare('INSERT INTO push_subs (endpoint,p256dh,auth,label,admin_id,created_at) VALUES (?,?,?,?,?,?)
+                  ON CONFLICT(endpoint) DO UPDATE SET p256dh = excluded.p256dh, auth = excluded.auth, label = excluded.label, fails = 0')
+       ->execute([$ep, $p256, $auth, $label, $me['id'], now_utc()]);
+    exit('{"ok":true}');
 }
 
 // ------------------------------------------------------------ actions (POST, then redirect)
@@ -171,6 +192,15 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
                 move_row('dentists', $id, (string) ($_POST['dir'] ?? ''));
                 go('?p=dentists');
 
+            case 'push_test':
+                [$ok, $bad] = push_send_all(['title' => 'Pearlecent test', 'body' => 'Notifications are working on this phone.', 'tag' => 'test', 'url' => './?p=leads']);
+                if ($ok) flash('Test sent to ' . $ok . ' device' . ($ok > 1 ? 's' : '') . '. It should appear within a few seconds.');
+                else flash('No device received it. Turn on notifications on your phone first.', 'err');
+                go('?p=account#app');
+            case 'push_remove':
+                $db->prepare('DELETE FROM push_subs WHERE id = ?')->execute([$id]);
+                flash('Device removed. It will no longer get notifications.');
+                go('?p=account#app');
             case 'password':
                 $cur = (string) ($_POST['current'] ?? '');
                 $new = (string) ($_POST['new'] ?? '');
@@ -253,8 +283,16 @@ function shell_top(string $title, string $active, array $me): void
 <meta name="robots" content="noindex, nofollow">
 <title><?= h($title) ?> · Pearlecent admin</title>
 <link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="admin.css?v=1">
-<script src="admin.js?v=1" defer></script>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2A0B1D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pearlecent">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="admin.css?v=2">
+<meta name="csrf" content="<?= h(csrf_token()) ?>">
+<script src="admin.js?v=2" defer></script>
 </head>
 <body class="adm">
 <aside class="side">
@@ -290,7 +328,15 @@ function login_view(string $error, string $username): void
 <meta name="robots" content="noindex, nofollow">
 <title>Sign in · Pearlecent admin</title>
 <link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="admin.css?v=1">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2A0B1D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pearlecent">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="admin.css?v=2">
+<script src="admin.js?v=2" defer></script>
 </head>
 <body class="adm adm--login">
 <main class="login">
@@ -476,6 +522,38 @@ if ($page === 'account') {
       <div class="actions"><button class="btn" type="submit">Save password</button></div>
     </form>
   </section>
+  <?php $subs = $db->query('SELECT * FROM push_subs ORDER BY id DESC')->fetchAll(); ?>
+  <section class="card narrow app-card" id="app" data-push data-key="<?= h(vapid_public_b64u()) ?>">
+    <h2>Phone app &amp; notifications</h2>
+    <p class="muted">Get a notification on your phone for every new booking request, even when the app is closed and the phone is locked.</p>
+    <ol class="steps-list">
+      <li data-step="install"><b>1. Install the app</b>
+        <span class="st st--done" data-when="installed">Installed on this phone ✓</span>
+        <span data-when="android"><button class="btn" type="button" data-install>Install Pearlecent app</button></span>
+        <span class="howto" data-when="android-manual">In Chrome tap <b>⋮</b> (top right) → <b>Add to Home screen</b> / <b>Install app</b>.</span>
+        <span class="howto" data-when="ios">In <b>Safari</b> tap <b>Share</b> <span class="shr" aria-hidden="true">⬆︎</span> → <b>Add to Home Screen</b> → <b>Add</b>. Then open <b>Pearlecent</b> from your home screen and sign in.</span>
+        <span class="howto" data-when="ios-other">On iPhone, open this page in <b>Safari</b> to install the app.</span>
+        <span class="howto" data-when="desktop">On a computer you can still turn on notifications below. For phones, open this page on the phone.</span>
+      </li>
+      <li data-step="notify"><b>2. Turn on notifications</b>
+        <span class="st st--done" data-when="on">On for this device ✓ <button class="ib" type="button" data-push-off>Turn off</button></span>
+        <span data-when="off"><button class="btn" type="button" data-push-on>Turn on notifications</button></span>
+        <span class="howto" data-when="ios-need-install">On iPhone, notifications work after step 1: open the app from your home screen and come back here.</span>
+        <span class="howto" data-when="blocked">Notifications are blocked. Allow them in the phone’s Settings → Notifications (or the browser’s site settings), then reload.</span>
+        <span class="howto" data-when="unsupported">This browser can’t receive notifications. Use Chrome on Android or Safari on iPhone (iOS 16.4 or newer).</span>
+        <span class="howto err" data-push-msg hidden></span>
+      </li>
+    </ol>
+    <h3 class="sub">Devices getting notifications (<?= count($subs) ?>)</h3>
+    <?php if (!$subs): ?><p class="muted tiny">None yet.</p><?php endif; ?>
+    <ul class="devs">
+      <?php foreach ($subs as $sb): ?>
+      <li><span><b><?= h($sb['label'] ?: 'Device') ?></b><small class="muted"> · added <?= h(dubai_time($sb['created_at'], 'j M Y')) ?><?= $sb['last_ok'] ? ' · last delivered ' . h(dubai_time($sb['last_ok'], 'j M, g:i A')) : '' ?></small></span>
+        <?= row_form('push_remove', (int) $sb['id'], icon('trash') . '<span class="sr">Remove</span>', [], 'Stop notifications on this device?', 'ib--danger') ?></li>
+      <?php endforeach; ?>
+    </ul>
+    <?php if ($subs): ?><form method="post"><?= csrf_field() ?><input type="hidden" name="action" value="push_test"><button class="btn btn--ghost" type="submit">Send a test notification</button></form><?php endif; ?>
+  </section>
   <section class="card narrow">
     <h2>Security</h2>
     <ul class="sec-list">
@@ -516,6 +594,9 @@ shell_top('Leads', 'leads', $me);
     <div><h1>Leads</h1><p class="muted">Booking requests sent from the website before visitors continue to WhatsApp.</p></div>
     <a class="btn btn--ghost" href="?<?= h(http_build_query(['p' => 'leads', 'type' => $type, 'status' => $status, 'q' => $q, 'export' => 1])) ?>"><?= icon('down2') ?>Export CSV</a>
   </header>
+  <?php if (!(int) $db->query('SELECT COUNT(*) FROM push_subs')->fetchColumn()): ?>
+  <a class="nudge card" href="?p=account#app"><span class="nudge__ic">🔔</span><span><b>Get new leads on your phone</b><small>Install the Pearlecent app and turn on notifications.</small></span><span class="nudge__go">Set up →</span></a>
+  <?php endif; ?>
   <div class="kpis">
     <div class="kpi"><b><?= $sToday ?></b><span>Requests today</span></div>
     <div class="kpi"><b><?= $sWeek ?></b><span>Last 7 days</span></div>
