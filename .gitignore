@@ -1,0 +1,6 @@
+data/
+uploads/gallery/*
+uploads/dentists/*
+!uploads/gallery/.keep
+!uploads/dentists/.keep
+*.sqlite

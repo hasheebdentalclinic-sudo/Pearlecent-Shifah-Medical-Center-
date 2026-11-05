@@ -1,4 +1,4 @@
-<!doctype html>
+<?php require __DIR__ . '/inc/boot.php'; ?><!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=28">
+<link rel="stylesheet" href="assets/css/site.css?v=29">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dentist","name":"Pearlecent Shifah Medical Center L.L.C.","telephone":"+971 55 339 6152","email":"pearlescentadmin@dentalclinicuae.com","address":{"@type":"PostalAddress","streetAddress":"Room 104, Al Zarooni Building, 73 Al Rigga Road","addressLocality":"Deira, Dubai","addressCountry":"AE"},"geo":{"@type":"GeoCoordinates","latitude":25.2624015,"longitude":55.3266563},"openingHours":["Sa-Th 09:00-22:00","Fr 13:00-21:00"],"sameAs":["https://www.instagram.com/pearlescent_dental","https://www.tiktok.com/@pearlecentshifah"]}</script>
 </head>
@@ -62,7 +62,7 @@
     </div>
     <figure class="story__pic shutter" data-reveal><img src="assets/img/clinic/reception.jpg" alt="The Pearlecent reception" width="1600" height="800" loading="lazy" style="object-position:22% 50%"></figure>
   </div>
-  <div class="wrap"><div class="stats"><div class="stat" data-reveal style="--n:0"><p class="stat__n"><span data-count="2018">2018</span></p><p class="stat__l">Caring for Deira since</p></div><div class="stat" data-reveal style="--n:1"><p class="stat__n"><span data-count="7,000">7,000</span>+</p><p class="stat__l">Happy Clients</p></div><div class="stat" data-reveal style="--n:2"><p class="stat__n"><span data-count="5">5</span></p><p class="stat__l">Experienced dentists</p></div><div class="stat" data-reveal style="--n:3"><p class="stat__n"><span data-count="4.9">4.9</span></p><p class="stat__l">Google rating, 213 reviews</p></div></div></div>
+  <div class="wrap"><div class="stats"><div class="stat" data-reveal style="--n:0"><p class="stat__n"><span data-count="2018">2018</span></p><p class="stat__l">Caring for Deira since</p></div><div class="stat" data-reveal style="--n:1"><p class="stat__n"><span data-count="7,000">7,000</span>+</p><p class="stat__l">Happy Clients</p></div><div class="stat" data-reveal style="--n:2"><p class="stat__n"><span><?= dentist_count() ?></span></p><p class="stat__l">Experienced dentists</p></div><div class="stat" data-reveal style="--n:3"><p class="stat__n"><span data-count="4.9">4.9</span></p><p class="stat__l">Google rating, 213 reviews</p></div></div></div>
 </section>
 
 <section class="intro" aria-labelledby="intro-h">
@@ -100,37 +100,7 @@
 <section class="docs" id="dentists" aria-labelledby="docs-h">
   <div class="wrap">
     <div class="sec-head"><h2 id="docs-h" data-reveal>Our dentists</h2><p data-reveal>Open a profile to read more and book with that dentist.</p></div>
-    <div class="dgrid">
-      <a class="dcard" href="dentists/faseela.html" data-reveal style="--n:0">
-        <span class="dcard__pic"><img src="assets/img/doctors/faseela.jpg" alt="Portrait of Dr. Faseela Pozhithara" width="840" height="1200" loading="lazy" style="object-position:50% 20%"></span>
-        <span class="dcard__name">Dr. Faseela Pozhithara</span>
-        <span class="dcard__meta">Medical Director &amp; General Dentist</span>
-        <span class="dcard__yrs">14 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/ankur.html" data-reveal style="--n:1">
-        <span class="dcard__pic"><img src="assets/img/doctors/ankur.jpg" alt="Portrait of Dr. Ankur Agarawal" width="731" height="1200" loading="lazy" style="object-position:50% 18%"></span>
-        <span class="dcard__name">Dr. Ankur Agarawal</span>
-        <span class="dcard__meta">Orthodontic Specialist</span>
-        <span class="dcard__yrs">10 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/krishna.html" data-reveal style="--n:2">
-        <span class="dcard__pic"><img src="assets/img/doctors/krishna.jpg" alt="Portrait of Dr. Krishna Priya" width="621" height="866" loading="lazy" style="object-position:50% 15%"></span>
-        <span class="dcard__name">Dr. Krishna Priya</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">12 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/sangeetha.html" data-reveal style="--n:3">
-        <span class="dcard__pic"><img src="assets/img/doctors/sangeetha.jpg" alt="Portrait of Dr. Sangeetha Bastan" width="900" height="1024" loading="lazy" style="object-position:50% 20%"></span>
-        <span class="dcard__name">Dr. Sangeetha Bastan</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">12 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/nasira.html" data-reveal style="--n:4">
-        <span class="dcard__pic"><img src="assets/img/doctors/nasira.jpg" alt="Portrait of Dr. Nasira Abbas" width="900" height="900" loading="lazy" style="object-position:50% 25%"></span>
-        <span class="dcard__name">Dr. Nasira Abbas</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">7 years of experience</span>
-      </a></div>
+    <div class="dgrid"><?= render_doc_cards('', null) ?></div>
   </div>
 </section>
 <section class="visit" id="visit" aria-labelledby="visit-h">
@@ -165,7 +135,8 @@
   <div class="ftr__base wrap"><p>© <span data-year>2026</span> Pearlecent Shifah Medical Center L.L.C. Results vary from person to person; your dentist explains the benefits, risks and alternatives of each treatment before it starts.</p>
     <p><a href="about.html">About</a><a href="treatments.html">Treatments</a><a href="index.html#visit">Contact</a></p></div>
 </footer>
-<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
-<script src="assets/js/site.js?v=28" defer></script>
+<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
+<script>window.PEARL_LEAD = "api/lead.php";</script>
+<script src="assets/js/site.js?v=29" defer></script>
 </body>
 </html>

@@ -1,0 +1,177 @@
+{
+ "dentists": [
+  {
+   "slug": "faseela",
+   "name": "Dr. Faseela Pozhithara",
+   "title": "Medical Director & General Dentist",
+   "years": 14,
+   "photo": "assets/img/doctors/faseela.jpg",
+   "w": 840,
+   "h": 1200,
+   "pos": "50% 20%",
+   "bio": [
+    "Dr. Faseela Pozhithara is the Medical Director and an experienced General Dentist dedicated to delivering quality dental care and personalized treatment. With 14 years of experience, she focuses on helping patients achieve healthy, beautiful, and confident smiles."
+   ],
+   "focus": [
+    "Rotary Root Canal Treatment",
+    "Smile Makeovers",
+    "Invisalign Go Provider",
+    "General Dental Procedures",
+    "Aesthetic Dentistry"
+   ]
+  },
+  {
+   "slug": "ankur",
+   "name": "Dr. Ankur Agarawal",
+   "title": "Orthodontic Specialist",
+   "years": 10,
+   "photo": "assets/img/doctors/ankur.jpg",
+   "w": 731,
+   "h": 1200,
+   "pos": "50% 18%",
+   "bio": [
+    "Dr. Ankur Agarawal is an experienced Orthodontic Specialist with 10 years of expertise in orthodontic treatment and smile correction. He specializes in a wide range of advanced orthodontic solutions, helping patients achieve improved dental alignment, bite function, and confident smiles."
+   ],
+   "focus": [
+    "Metal, Ceramic, Self-Ligating (Damon), and Lingual Braces",
+    "Cleft Orthodontics",
+    "Growth and Dentofacial Orthopaedics",
+    "Mini-Screw (TAD) Treatment",
+    "Invisalign and Clear Aligner Therapy",
+    "Temporomandibular Disorders (TMD)",
+    "Snoring and Sleep Apnoea",
+    "Sports Dentistry"
+   ]
+  },
+  {
+   "slug": "krishna",
+   "name": "Dr. Krishna Priya",
+   "title": "General Dentist",
+   "years": 12,
+   "photo": "assets/img/doctors/krishna.jpg",
+   "w": 621,
+   "h": 866,
+   "pos": "50% 15%",
+   "bio": [
+    "Dr. Krishna Priya is an experienced General Dentist dedicated to providing quality dental care and helping patients achieve healthy, confident smiles. Her areas of expertise include rotary root canal treatment, smile makeovers, aesthetic dentistry, tooth extractions, and Invisalign Go clear aligner treatment."
+   ],
+   "focus": [
+    "Rotary Root Canal Treatment",
+    "Smile Makeovers",
+    "Invisalign Go Provider",
+    "General Dental Procedures",
+    "Aesthetic Dentistry"
+   ]
+  },
+  {
+   "slug": "sangeetha",
+   "name": "Dr. Sangeetha Bastan",
+   "title": "General Dentist",
+   "years": 12,
+   "photo": "assets/img/doctors/sangeetha.jpg",
+   "w": 900,
+   "h": 1024,
+   "pos": "50% 20%",
+   "bio": [
+    "Dr. Sangeetha Bastan is an experienced General Dentist dedicated to providing personalized dental care and helping patients achieve healthy, beautiful smiles. Her areas of expertise include rotary root canal treatment, smile makeovers, aesthetic dentistry, tooth extractions, and Invisalign Go clear aligner treatment."
+   ],
+   "focus": [
+    "Rotary Root Canal Treatment",
+    "Smile Makeovers",
+    "Invisalign Go Provider",
+    "General Dental Procedures",
+    "Aesthetic Dentistry"
+   ]
+  },
+  {
+   "slug": "nasira",
+   "name": "Dr. Nasira Abbas",
+   "title": "General Dentist",
+   "years": 7,
+   "photo": "assets/img/doctors/nasira.jpg",
+   "w": 900,
+   "h": 900,
+   "pos": "50% 25%",
+   "bio": [
+    "Dr. Nasira Abbas is a dedicated General Dentist with 7 years of experience in providing personalized dental care. Her areas of expertise include rotary root canal treatment, smile makeovers, aesthetic dentistry, tooth extractions, and Invisalign Go clear aligner treatment."
+   ],
+   "focus": [
+    "Rotary Root Canal Treatment",
+    "Smile Makeovers",
+    "Invisalign Go Provider",
+    "General Dental Procedures",
+    "Aesthetic Dentistry"
+   ]
+  }
+ ],
+ "gallery": [
+  {
+   "title": "Case 01",
+   "treatment": "",
+   "before": "assets/img/gallery/case1-before.jpg",
+   "after": "assets/img/gallery/case1-after.jpg"
+  },
+  {
+   "title": "Case 02",
+   "treatment": "",
+   "before": "assets/img/gallery/case2-before.jpg",
+   "after": "assets/img/gallery/case2-after.jpg"
+  }
+ ],
+ "reviews": [
+  {
+   "who": "Rove P.",
+   "doctor": "nasira",
+   "text": "I’m so happy with Dr. Nasira, she really did such a great job and made me feel comfortable throughout the whole procedure. She was very professional, gentle, and caring. Also, special thanks to Melody at the reception for being so welcoming."
+  },
+  {
+   "who": "Tency S.",
+   "doctor": "faseela",
+   "text": "I completed my one root canal treatment with Dr. Faseela and am now undergoing my second tooth root canal with her. She is my favorite doctor because of her kindness and professionalism. Highly recommend the entire team."
+  },
+  {
+   "who": "Bernadeth A.",
+   "doctor": "krishna",
+   "text": "Excellent experience overall. She is very gentle and makes the entire procedure comfortable. Highly recommended, Doctor Krishna!"
+  },
+  {
+   "who": "Au",
+   "doctor": "ankur",
+   "text": "Quick, gentle, and very professional braces adjustment. Always a great experience. Thanks to Doc Ankur and the team."
+  },
+  {
+   "who": "Patring F.",
+   "doctor": "sangeetha",
+   "text": "I had my teeth whitened yesterday by Dr. Sangeetha. She was very gentle with the whole procedure and she did a wonderful job. Also, the filipina lady in the reception with glasses was very accommodating and very helpful."
+  },
+  {
+   "who": "Ronalyn M.",
+   "doctor": "nasira",
+   "text": "Great experience with Dr. Nassera. The doctor is highly professional, attentive, and truly cares about patients. The staff are also very friendly, helpful, and well-organized."
+  },
+  {
+   "who": "Abdullah Z.",
+   "doctor": "faseela",
+   "text": "Thank you Dr. Faseela for the great services from the beginning of my treatment till now. I am very satisfied and will highly recommend this clinic. Thank you to all the staff nurses and specially the receptionists."
+  },
+  {
+   "who": "Kushpal K.",
+   "doctor": "krishna",
+   "text": "Very good service and specially doctor Krishna. She gave me very good advice and was friendly. I love the place and definitely I will recommend it to my friends."
+  },
+  {
+   "who": "Sharla Y.",
+   "doctor": "faseela",
+   "text": "It’s been my clinic since 2021. Very accommodating staff and I recommend Dr. Faseela, very nice doctor."
+  },
+  {
+   "who": "Cherry Mae A.",
+   "doctor": null,
+   "text": "Always accommodating and very fast, from the doctor to the staff. Recommended already to my cousin for cleaning and braces adjustment."
+  }
+ ],
+ "admin": {
+  "username": "admin",
+  "hash": "$2y$12$h6QR0jvvL02zxi8KQ2H6/ODpe46mf9khoCACGBoElDlP5YewpPQQi"
+ }
+}

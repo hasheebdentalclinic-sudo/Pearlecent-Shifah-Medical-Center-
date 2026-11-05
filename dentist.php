@@ -1,18 +1,24 @@
-<!doctype html>
+<?php
+require __DIR__ . '/inc/boot.php';
+$d = dentist_by_slug((string) ($_GET['slug'] ?? ''));
+if (!$d) { http_response_code(404); header('Location: ../index.html#dentists', true, 302); exit; }
+$first = first_name($d['name']);
+$mine = reviews_for($d['slug']);
+?><!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dr. Krishna Priya, General Dentist | Pearlecent, Deira</title>
-<meta name="description" content="Dr. Krishna Priya, General Dentist with 12 years of experience at Pearlecent Shifah Medical Center, Al Rigga, Deira. Book your appointment online.">
+<title><?= h($d['name'] . ', ' . $d['title']) ?> | Pearlecent, Deira</title>
+<meta name="description" content="<?= h($d['name'] . ', ' . $d['title'] . ' with ' . $d['years'] . ' years of experience at Pearlecent Shifah Medical Center, Al Rigga, Deira. Book your appointment online.') ?>">
 <meta name="theme-color" content="#FFFFFF">
-<meta property="og:title" content="Dr. Krishna Priya, General Dentist | Pearlecent, Deira">
-<meta property="og:description" content="Dr. Krishna Priya, General Dentist with 12 years of experience at Pearlecent Shifah Medical Center, Al Rigga, Deira. Book your appointment online.">
+<meta property="og:title" content="<?= h($d['name'] . ', ' . $d['title']) ?> | Pearlecent, Deira">
+<meta property="og:description" content="<?= h($d['name'] . ', ' . $d['title'] . ' with ' . $d['years'] . ' years of experience at Pearlecent Shifah Medical Center, Al Rigga, Deira. Book your appointment online.') ?>">
 <meta property="og:image" content="../assets/img/clinic/reception.jpg">
 <link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
 <link rel="preload" href="../assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../assets/css/site.css?v=28">
+<link rel="stylesheet" href="../assets/css/site.css?v=29">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dentist","name":"Pearlecent Shifah Medical Center L.L.C.","telephone":"+971 55 339 6152","email":"pearlescentadmin@dentalclinicuae.com","address":{"@type":"PostalAddress","streetAddress":"Room 104, Al Zarooni Building, 73 Al Rigga Road","addressLocality":"Deira, Dubai","addressCountry":"AE"},"geo":{"@type":"GeoCoordinates","latitude":25.2624015,"longitude":55.3266563},"openingHours":["Sa-Th 09:00-22:00","Fr 13:00-21:00"],"sameAs":["https://www.instagram.com/pearlescent_dental","https://www.tiktok.com/@pearlecentshifah"]}</script>
 </head>
@@ -38,34 +44,35 @@
 <main id="main">
 <section class="dhero">
   <div class="wrap dhero__in">
-    <figure class="dhero__pic" data-open><img src="../assets/img/doctors/krishna.jpg" alt="Portrait of Dr. Krishna Priya" width="621" height="866" style="object-position:50% 15%" fetchpriority="high"></figure>
+    <figure class="dhero__pic" data-open><img src="<?= h(asset_url($d['photo'], '../')) ?>" alt="Portrait of <?= h($d['name']) ?>" width="<?= (int) $d['photo_w'] ?>" height="<?= (int) $d['photo_h'] ?>" style="object-position:<?= h($d['pos']) ?>" fetchpriority="high"></figure>
     <div class="dhero__txt">
       <p class="phero__crumb" data-rise style="--i:0"><a href="../index.html">Home</a> <span aria-hidden="true">/</span> <a href="../index.html#dentists">Dentists</a></p>
-      <h1 class="lines"><span class="line"><span data-line style="--i:1">Dr. Krishna Priya</span></span></h1>
-      <p class="dhero__title" data-rise style="--i:2">General Dentist</p>
-      <ul class="dhero__facts" data-rise style="--i:3"><li><b>12 years</b> of experience</li><li><b>Pearlecent</b> Al Rigga</li></ul>
-      <p class="hero__btns" data-rise style="--i:4"><a class="button button--lg" href="#book">Book with Dr. Krishna</a><a class="button button--lg button--soft" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20have%20a%20question%20for%20Dr.%20Krishna%20Priya.">Ask a question</a></p>
+      <h1 class="lines"><span class="line"><span data-line style="--i:1"><?= h($d['name']) ?></span></span></h1>
+      <p class="dhero__title" data-rise style="--i:2"><?= h($d['title']) ?></p>
+      <ul class="dhero__facts" data-rise style="--i:3"><li><b><?= (int) $d['years'] ?> years</b> of experience</li><li><b>Pearlecent</b> Al Rigga</li></ul>
+      <p class="hero__btns" data-rise style="--i:4"><a class="button button--lg" href="#book">Book with Dr. <?= h($first) ?></a><a class="button button--lg button--soft" href="<?= h('https://wa.me/' . '971553396152' . '?text=' . rawurlencode('Hello Pearlecent, I have a question for ' . $d['name'] . '.')) ?>" data-lead-type="Dentist question" data-lead-dentist="<?= h($d['name']) ?>">Ask a question</a></p>
     </div>
   </div>
 </section>
 <section class="dbody">
   <div class="wrap dbody__in">
-    <div><h2 data-reveal>About Dr. Krishna</h2><p data-reveal>Dr. Krishna Priya is an experienced General Dentist dedicated to providing quality dental care and helping patients achieve healthy, confident smiles. Her areas of expertise include rotary root canal treatment, smile makeovers, aesthetic dentistry, tooth extractions, and Invisalign Go clear aligner treatment.</p></div>
-    <div class="dfocus"><h2 data-reveal>Areas of Expertise</h2><ul data-reveal><li>Rotary Root Canal Treatment</li><li>Smile Makeovers</li><li>Invisalign Go Provider</li><li>General Dental Procedures</li><li>Aesthetic Dentistry</li></ul></div>
+    <div><h2 data-reveal>About Dr. <?= h($first) ?></h2><?php foreach (paragraphs($d['bio']) as $p): ?><p data-reveal><?= h($p) ?></p><?php endforeach; ?></div>
+    <?php if (lines($d['focus'])): ?><div class="dfocus"><h2 data-reveal>Areas of Expertise</h2><ul data-reveal><?php foreach (lines($d['focus']) as $f): ?><li><?= h($f) ?></li><?php endforeach; ?></ul></div><?php endif; ?>
   </div>
-  <div class="wrap"><div class="dreviews"><h2 data-reveal>Patients wrote</h2><div class="dreviews__grid"><blockquote class="dq" data-reveal><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Excellent experience overall. She is very gentle and makes the entire procedure comfortable. Highly recommended, Doctor Krishna!”</p><footer><b>Bernadeth A.</b> · Google review</footer></blockquote><blockquote class="dq" data-reveal><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Very good service and specially doctor Krishna. She gave me very good advice and was friendly. I love the place and definitely I will recommend it to my friends.”</p><footer><b>Kushpal K.</b> · Google review</footer></blockquote></div><p data-reveal><a class="link-u" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener">All 213 reviews on Google</a></p></div></div>
+  <?php if ($mine): ?><div class="wrap"><div class="dreviews"><h2 data-reveal>Patients wrote</h2><div class="dreviews__grid"><?php foreach ($mine as $r): ?><blockquote class="dq" data-reveal><?= stars_html() ?><p>“<?= h($r['text']) ?>”</p><footer><b><?= h($r['who']) ?></b> · Google review</footer></blockquote><?php endforeach; ?></div><p data-reveal><a class="link-u" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener">All 213 reviews on Google</a></p></div></div><?php endif; ?>
 </section>
 <section class="book" id="book" aria-labelledby="book-h">
   <div class="wrap book__in">
     <div class="book__side">
-      <h2 id="book-h" data-reveal>Book with Dr. Krishna</h2>
+      <h2 id="book-h" data-reveal>Book with Dr. <?= h(first_name($d['name'])) ?></h2>
       <p class="book__lead" data-reveal>Three quick steps. We confirm your time.</p>
       <ol class="steps"><li data-reveal style="--n:0"><span class="steps__n">1</span><h3>Choose</h3><p>Treatment, dentist, day and time.</p></li><li data-reveal style="--n:1"><span class="steps__n">2</span><h3>Send</h3><p>Your request goes to our front desk.</p></li><li data-reveal style="--n:2"><span class="steps__n">3</span><h3>We confirm</h3><p>We reply with your appointment time.</p></li></ol>
     </div>
     <div class="book__card" data-reveal><form class="sheet" data-composer action="https://wa.me/971553396152" method="get" novalidate>
+  <p class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
   <div class="sheet__fields">
     <label class="fld fld--wide"><span class="fld__l">Treatment</span><span class="sel"><select class="field" name="treatment"><option value="">Choose a treatment</option><option value="General Dental Consultation (Free)">General Dental Consultation (Free)</option><option value="Orthodontic Consultation">Orthodontic Consultation</option><option value="Braces (Metal, Ceramic &amp; Damon)">Braces (Metal, Ceramic &amp; Damon)</option><option value="Clear Aligners / Invisalign">Clear Aligners / Invisalign</option><option value="Dental Cleaning &amp; Polishing">Dental Cleaning &amp; Polishing</option><option value="Teeth Whitening">Teeth Whitening</option><option value="Dental Veneers">Dental Veneers</option><option value="Dental Filling">Dental Filling</option><option value="Tooth Extraction">Tooth Extraction</option><option value="Dental Crowns &amp; Bridges">Dental Crowns &amp; Bridges</option><option value="Root Canal Treatment">Root Canal Treatment</option><option value="Dentures &amp; Retainers">Dentures &amp; Retainers</option><option value="Cosmetic Dentistry">Cosmetic Dentistry</option><option value="Other Dental Treatments">Other Dental Treatments</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
-    <input type="hidden" name="dentist" value="Dr. Krishna Priya">
+    <input type="hidden" name="dentist" value="<?= h($d['name']) ?>">
     <label class="fld"><span class="fld__l">Preferred day</span><span class="sel"><select class="field" name="day" data-days><option value="">Any day</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
     <label class="fld"><span class="fld__l">Preferred time</span><span class="sel"><select class="field" name="time">
       <option value="">Any time</option>
@@ -87,31 +94,7 @@
 <section class="docs" aria-labelledby="others-h">
   <div class="wrap">
     <div class="sec-head"><h2 id="others-h" data-reveal>The other dentists</h2><p data-reveal>Four General Dentists and one Orthodontic Specialist at Pearlecent.</p></div>
-    <div class="dgrid dgrid--4">
-      <a class="dcard" href="../dentists/faseela.html" data-reveal style="--n:0">
-        <span class="dcard__pic"><img src="../assets/img/doctors/faseela.jpg" alt="Portrait of Dr. Faseela Pozhithara" width="840" height="1200" loading="lazy" style="object-position:50% 20%"></span>
-        <span class="dcard__name">Dr. Faseela Pozhithara</span>
-        <span class="dcard__meta">Medical Director &amp; General Dentist</span>
-        <span class="dcard__yrs">14 years of experience</span>
-      </a>
-      <a class="dcard" href="../dentists/ankur.html" data-reveal style="--n:1">
-        <span class="dcard__pic"><img src="../assets/img/doctors/ankur.jpg" alt="Portrait of Dr. Ankur Agarawal" width="731" height="1200" loading="lazy" style="object-position:50% 18%"></span>
-        <span class="dcard__name">Dr. Ankur Agarawal</span>
-        <span class="dcard__meta">Orthodontic Specialist</span>
-        <span class="dcard__yrs">10 years of experience</span>
-      </a>
-      <a class="dcard" href="../dentists/sangeetha.html" data-reveal style="--n:2">
-        <span class="dcard__pic"><img src="../assets/img/doctors/sangeetha.jpg" alt="Portrait of Dr. Sangeetha Bastan" width="900" height="1024" loading="lazy" style="object-position:50% 20%"></span>
-        <span class="dcard__name">Dr. Sangeetha Bastan</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">12 years of experience</span>
-      </a>
-      <a class="dcard" href="../dentists/nasira.html" data-reveal style="--n:3">
-        <span class="dcard__pic"><img src="../assets/img/doctors/nasira.jpg" alt="Portrait of Dr. Nasira Abbas" width="900" height="900" loading="lazy" style="object-position:50% 25%"></span>
-        <span class="dcard__name">Dr. Nasira Abbas</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">7 years of experience</span>
-      </a></div>
+    <div class="dgrid dgrid--4"><?= render_doc_cards('../', $d['slug']) ?></div>
   </div>
 </section>
 </main>
@@ -134,7 +117,8 @@
   <div class="ftr__base wrap"><p>© <span data-year>2026</span> Pearlecent Shifah Medical Center L.L.C. Results vary from person to person; your dentist explains the benefits, risks and alternatives of each treatment before it starts.</p>
     <p><a href="../about.html">About</a><a href="../treatments.html">Treatments</a><a href="../index.html#visit">Contact</a></p></div>
 </footer>
-<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
-<script src="../assets/js/site.js?v=28" defer></script>
+<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
+<script>window.PEARL_LEAD = "../api/lead.php";</script>
+<script src="../assets/js/site.js?v=29" defer></script>
 </body>
 </html>

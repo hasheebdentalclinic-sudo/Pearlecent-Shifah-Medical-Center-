@@ -1,4 +1,4 @@
-<!doctype html>
+<?php require __DIR__ . '/inc/boot.php'; ?><!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=28">
+<link rel="stylesheet" href="assets/css/site.css?v=29">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dentist","name":"Pearlecent Shifah Medical Center L.L.C.","telephone":"+971 55 339 6152","email":"pearlescentadmin@dentalclinicuae.com","address":{"@type":"PostalAddress","streetAddress":"Room 104, Al Zarooni Building, 73 Al Rigga Road","addressLocality":"Deira, Dubai","addressCountry":"AE"},"geo":{"@type":"GeoCoordinates","latitude":25.2624015,"longitude":55.3266563},"openingHours":["Sa-Th 09:00-22:00","Fr 13:00-21:00"],"sameAs":["https://www.instagram.com/pearlescent_dental","https://www.tiktok.com/@pearlecentshifah"]}</script>
 </head>
@@ -55,7 +55,7 @@
     <div class="tsec__txt">
       <h2 id="general-h" data-reveal>General Dentistry</h2>
       <ul class="tsec__list" data-reveal><li>Free Dental Examinations and Check-ups</li><li>Tooth Cleaning (Scaling and Polishing)</li><li>Tooth Extraction (Surgical / Non-Surgical)</li></ul>
-      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20General%20Dentistry.">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20General%20Dentistry." data-lead-type="Treatment enquiry" data-lead-treatment="General Dentistry">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -65,7 +65,7 @@
     <div class="tsec__txt">
       <h2 id="restorative-h" data-reveal>Restorative Dentistry</h2>
       <ul class="tsec__list" data-reveal><li>Tooth Colored Fillings (Composite / GIC)</li><li>Root Canal Treatment</li><li>Dental Crowns</li><li>Dental Bridges</li><li>Inlays / Onlays</li></ul>
-      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Restorative%20Dentistry.">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Restorative%20Dentistry." data-lead-type="Treatment enquiry" data-lead-treatment="Restorative Dentistry">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -75,7 +75,7 @@
     <div class="tsec__txt">
       <h2 id="cosmetic-h" data-reveal>Cosmetic Dentistry</h2>
       <ul class="tsec__list" data-reveal><li>Teeth Whitening</li><li>Dental Veneers – Composite, E-max and Zirconia</li><li>Full Mouth Veneers / Hollywood Smile</li><li>Tooth Jewellery</li><li>Smile Makeover</li><li>Snap On Veneers</li></ul>
-      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Cosmetic%20Dentistry.">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Cosmetic%20Dentistry." data-lead-type="Treatment enquiry" data-lead-treatment="Cosmetic Dentistry">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -85,7 +85,7 @@
     <div class="tsec__txt">
       <h2 id="orthodontics-h" data-reveal>Orthodontics – Braces &amp; Teeth Alignment</h2>
       <ul class="tsec__list" data-reveal><li>Metal Braces</li><li>Ceramic and Crystal Braces</li><li>Lingual Braces</li><li>Damon Braces / Self Ligating</li><li>Clear Aligners / Invisalign</li></ul>
-      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Orthodontics%20%E2%80%93%20Braces%20%26%20Teeth%20Alignment.">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Orthodontics%20%E2%80%93%20Braces%20%26%20Teeth%20Alignment." data-lead-type="Treatment enquiry" data-lead-treatment="Orthodontics – Braces &amp; Teeth Alignment">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -95,7 +95,7 @@
     <div class="tsec__txt">
       <h2 id="dentures-h" data-reveal>Dentures &amp; Retainers</h2>
       <ul class="tsec__list" data-reveal><li>Removable Partial Dentures (Acrylic / Flexible)</li><li>Complete Denture</li><li>Clear Retainers</li><li>Lingual Retainers</li><li>Hawley’s Retainers</li></ul>
-      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Dentures%20%26%20Retainers.">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Dentures%20%26%20Retainers." data-lead-type="Treatment enquiry" data-lead-treatment="Dentures &amp; Retainers">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -105,7 +105,7 @@
     <div class="tsec__txt">
       <h2 id="other-h" data-reveal>Other Dental Services</h2>
       <ul class="tsec__list" data-reveal><li>TMJ Consultation</li><li>Mouth Guard</li><li>Preventive Dental Care</li><li>Pedodontic Treatments</li><li>Fluoride Treatment</li><li>Dental X-ray</li><li>Digital Dentistry</li></ul>
-      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Other%20Dental%20Services.">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+      <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Other%20Dental%20Services." data-lead-type="Treatment enquiry" data-lead-treatment="Other Dental Services">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -129,7 +129,8 @@
   <div class="ftr__base wrap"><p>© <span data-year>2026</span> Pearlecent Shifah Medical Center L.L.C. Results vary from person to person; your dentist explains the benefits, risks and alternatives of each treatment before it starts.</p>
     <p><a href="about.html">About</a><a href="treatments.html">Treatments</a><a href="index.html#visit">Contact</a></p></div>
 </footer>
-<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
-<script src="assets/js/site.js?v=28" defer></script>
+<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
+<script>window.PEARL_LEAD = "api/lead.php";</script>
+<script src="assets/js/site.js?v=29" defer></script>
 </body>
 </html>

@@ -55,6 +55,34 @@
     });
   }
 
+
+  // save the request for the clinic's admin panel (never blocks the visitor)
+  const sendLead = (fd) => {
+    try {
+      const url = window.PEARL_LEAD;
+      if (!url) return;
+      if (navigator.sendBeacon && navigator.sendBeacon(url, fd)) return;
+      fetch(url, { method: 'POST', body: fd, keepalive: true, credentials: 'same-origin' }).catch(() => {});
+    } catch (e) { /* ignore */ }
+  };
+  document.addEventListener('click', (ev) => {
+    const a = ev.target.closest('a[data-lead-type]');
+    if (!a) return;
+    const fd = new FormData();
+    fd.set('type', a.dataset.leadType);
+    if (a.dataset.leadTreatment) fd.set('treatment', a.dataset.leadTreatment);
+    if (a.dataset.leadDentist) fd.set('dentist', a.dataset.leadDentist);
+    fd.set('page', location.pathname);
+    sendLead(fd);
+  });
+
+  // before / after comparison sliders
+  $$('[data-ba]').forEach((c) => {
+    const r = c.querySelector('.bacase__range');
+    const set = () => c.style.setProperty('--pos', r.value + '%');
+    r.addEventListener('input', set); set();
+  });
+
   // the WhatsApp booking form
   $$('[data-composer]').forEach((form) => {
     const days = form.querySelector('[data-days]');
@@ -99,7 +127,16 @@
     };
     form.addEventListener('change', build);
     form.addEventListener('input', build);
-    form.addEventListener('submit', (ev) => { ev.preventDefault(); location.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(build()); });
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const msg = build();
+      const f = new FormData(form);
+      f.set('type', 'Appointment request');
+      f.set('page', location.pathname);
+      f.delete('text');
+      sendLead(f);
+      location.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+    });
     build();
   });
 

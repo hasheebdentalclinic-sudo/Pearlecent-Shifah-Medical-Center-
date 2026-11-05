@@ -1,4 +1,4 @@
-<!doctype html>
+<?php require __DIR__ . '/inc/boot.php'; ?><!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -12,7 +12,7 @@
 <link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=28">
+<link rel="stylesheet" href="assets/css/site.css?v=29">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dentist","name":"Pearlecent Shifah Medical Center L.L.C.","telephone":"+971 55 339 6152","email":"pearlescentadmin@dentalclinicuae.com","address":{"@type":"PostalAddress","streetAddress":"Room 104, Al Zarooni Building, 73 Al Rigga Road","addressLocality":"Deira, Dubai","addressCountry":"AE"},"geo":{"@type":"GeoCoordinates","latitude":25.2624015,"longitude":55.3266563},"openingHours":["Sa-Th 09:00-22:00","Fr 13:00-21:00"],"sameAs":["https://www.instagram.com/pearlescent_dental","https://www.tiktok.com/@pearlecentshifah"]}</script>
 </head>
@@ -57,7 +57,7 @@
       </div>
       <ul class="hero2__stats">
         <li data-rise style="--i:4"><b><span data-count="7000">7,000</span>+</b><span>Happy Clients</span></li>
-        <li data-rise style="--i:5"><b>05</b><span>Experienced dentists</span></li>
+        <li data-rise style="--i:5"><b><?= sprintf('%02d', dentist_count()) ?></b><span>Experienced dentists</span></li>
         <li data-rise style="--i:6"><a class="hero2__g" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener"><b>4.9</b><span>Google rating, 213 reviews</span><em><span class="hide-sm">Read Google reviews</span><span class="show-sm">Reviews</span> ↗</em></a></li>
       </ul>
     </div>
@@ -125,40 +125,12 @@
       <h2 id="docs-h" data-reveal class="h2t"><span>Meet our</span> Dentists</h2>
       <p data-reveal>Four General Dentists and one Orthodontic Specialist. Choose one when you book, or let us find the first free time.</p>
     </div>
-    <div class="dgrid">
-      <a class="dcard" href="dentists/faseela.html" data-reveal style="--n:0">
-        <span class="dcard__pic"><img src="assets/img/doctors/faseela.jpg" alt="Portrait of Dr. Faseela Pozhithara" width="840" height="1200" loading="lazy" style="object-position:50% 20%"></span>
-        <span class="dcard__name">Dr. Faseela Pozhithara</span>
-        <span class="dcard__meta">Medical Director &amp; General Dentist</span>
-        <span class="dcard__yrs">14 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/ankur.html" data-reveal style="--n:1">
-        <span class="dcard__pic"><img src="assets/img/doctors/ankur.jpg" alt="Portrait of Dr. Ankur Agarawal" width="731" height="1200" loading="lazy" style="object-position:50% 18%"></span>
-        <span class="dcard__name">Dr. Ankur Agarawal</span>
-        <span class="dcard__meta">Orthodontic Specialist</span>
-        <span class="dcard__yrs">10 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/krishna.html" data-reveal style="--n:2">
-        <span class="dcard__pic"><img src="assets/img/doctors/krishna.jpg" alt="Portrait of Dr. Krishna Priya" width="621" height="866" loading="lazy" style="object-position:50% 15%"></span>
-        <span class="dcard__name">Dr. Krishna Priya</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">12 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/sangeetha.html" data-reveal style="--n:3">
-        <span class="dcard__pic"><img src="assets/img/doctors/sangeetha.jpg" alt="Portrait of Dr. Sangeetha Bastan" width="900" height="1024" loading="lazy" style="object-position:50% 20%"></span>
-        <span class="dcard__name">Dr. Sangeetha Bastan</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">12 years of experience</span>
-      </a>
-      <a class="dcard" href="dentists/nasira.html" data-reveal style="--n:4">
-        <span class="dcard__pic"><img src="assets/img/doctors/nasira.jpg" alt="Portrait of Dr. Nasira Abbas" width="900" height="900" loading="lazy" style="object-position:50% 25%"></span>
-        <span class="dcard__name">Dr. Nasira Abbas</span>
-        <span class="dcard__meta">General Dentist</span>
-        <span class="dcard__yrs">7 years of experience</span>
-      </a>
+    <div class="dgrid"><?= render_doc_cards('', null) ?>
     </div>
   </div>
 </section>
+
+<?= render_gallery('') ?>
 
 <section class="book" id="book" aria-labelledby="book-h">
   <div class="wrap book__in">
@@ -168,9 +140,10 @@
       <ol class="steps"><li data-reveal style="--n:0"><span class="steps__n">1</span><h3>Choose</h3><p>Treatment, dentist, day and time.</p></li><li data-reveal style="--n:1"><span class="steps__n">2</span><h3>Send</h3><p>Your request goes to our front desk.</p></li><li data-reveal style="--n:2"><span class="steps__n">3</span><h3>We confirm</h3><p>We reply with your appointment time.</p></li></ol>
     </div>
     <div class="book__card" data-reveal><form class="sheet" data-composer action="https://wa.me/971553396152" method="get" novalidate>
+  <p class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
   <div class="sheet__fields">
     <label class="fld"><span class="fld__l">Treatment</span><span class="sel"><select class="field" name="treatment"><option value="">Choose a treatment</option><option value="General Dental Consultation (Free)">General Dental Consultation (Free)</option><option value="Orthodontic Consultation">Orthodontic Consultation</option><option value="Braces (Metal, Ceramic &amp; Damon)">Braces (Metal, Ceramic &amp; Damon)</option><option value="Clear Aligners / Invisalign">Clear Aligners / Invisalign</option><option value="Dental Cleaning &amp; Polishing">Dental Cleaning &amp; Polishing</option><option value="Teeth Whitening">Teeth Whitening</option><option value="Dental Veneers">Dental Veneers</option><option value="Dental Filling">Dental Filling</option><option value="Tooth Extraction">Tooth Extraction</option><option value="Dental Crowns &amp; Bridges">Dental Crowns &amp; Bridges</option><option value="Root Canal Treatment">Root Canal Treatment</option><option value="Dentures &amp; Retainers">Dentures &amp; Retainers</option><option value="Cosmetic Dentistry">Cosmetic Dentistry</option><option value="Other Dental Treatments">Other Dental Treatments</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
-    <label class="fld"><span class="fld__l">Dentist</span><span class="sel"><select class="field" name="dentist"><option value="">Any dentist</option><option value="Dr. Faseela Pozhithara">Dr. Faseela Pozhithara</option><option value="Dr. Ankur Agarawal">Dr. Ankur Agarawal</option><option value="Dr. Krishna Priya">Dr. Krishna Priya</option><option value="Dr. Sangeetha Bastan">Dr. Sangeetha Bastan</option><option value="Dr. Nasira Abbas">Dr. Nasira Abbas</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <label class="fld"><span class="fld__l">Dentist</span><span class="sel"><select class="field" name="dentist"><?= render_dentist_options() ?></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
     <label class="fld"><span class="fld__l">Preferred day</span><span class="sel"><select class="field" name="day" data-days><option value="">Any day</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
     <label class="fld"><span class="fld__l">Preferred time</span><span class="sel"><select class="field" name="time">
       <option value="">Any time</option>
@@ -196,47 +169,7 @@
       <p data-reveal><span class="g-score"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span> <b>4.9</b> from 213 Google reviews</span> <a class="link-u" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener">Read all on Google</a></p>
     </div>
     <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Google reviews">
-      <ul class="slides">
-        <li class="slide is-on" data-slide aria-roledescription="slide" aria-label="1 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/nasira.jpg" alt="Dr. Nasira Abbas" width="900" height="900" loading="lazy" style="object-position:50% 25%"><figcaption>Dr. Nasira Abbas</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“I’m so happy with Dr. Nasira, she really did such a great job and made me feel comfortable throughout the whole procedure. She was very professional, gentle, and caring. Also, special thanks to Melody at the reception for being so welcoming.”</p><footer><b>Rove P.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="2 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/faseela.jpg" alt="Dr. Faseela Pozhithara" width="840" height="1200" loading="lazy" style="object-position:50% 20%"><figcaption>Dr. Faseela Pozhithara</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“I completed my one root canal treatment with Dr. Faseela and am now undergoing my second tooth root canal with her. She is my favorite doctor because of her kindness and professionalism. Highly recommend the entire team.”</p><footer><b>Tency S.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="3 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/krishna.jpg" alt="Dr. Krishna Priya" width="621" height="866" loading="lazy" style="object-position:50% 15%"><figcaption>Dr. Krishna Priya</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Excellent experience overall. She is very gentle and makes the entire procedure comfortable. Highly recommended, Doctor Krishna!”</p><footer><b>Bernadeth A.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="4 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/ankur.jpg" alt="Dr. Ankur Agarawal" width="731" height="1200" loading="lazy" style="object-position:50% 18%"><figcaption>Dr. Ankur Agarawal</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Quick, gentle, and very professional braces adjustment. Always a great experience. Thanks to Doc Ankur and the team.”</p><footer><b>Au</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="5 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/sangeetha.jpg" alt="Dr. Sangeetha Bastan" width="900" height="1024" loading="lazy" style="object-position:50% 20%"><figcaption>Dr. Sangeetha Bastan</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“I had my teeth whitened yesterday by Dr. Sangeetha. She was very gentle with the whole procedure and she did a wonderful job. Also, the filipina lady in the reception with glasses was very accommodating and very helpful.”</p><footer><b>Patring F.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="6 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/nasira.jpg" alt="Dr. Nasira Abbas" width="900" height="900" loading="lazy" style="object-position:50% 25%"><figcaption>Dr. Nasira Abbas</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Great experience with Dr. Nassera. The doctor is highly professional, attentive, and truly cares about patients. The staff are also very friendly, helpful, and well-organized.”</p><footer><b>Ronalyn M.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="7 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/faseela.jpg" alt="Dr. Faseela Pozhithara" width="840" height="1200" loading="lazy" style="object-position:50% 20%"><figcaption>Dr. Faseela Pozhithara</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Thank you Dr. Faseela for the great services from the beginning of my treatment till now. I am very satisfied and will highly recommend this clinic. Thank you to all the staff nurses and specially the receptionists.”</p><footer><b>Abdullah Z.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="8 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/krishna.jpg" alt="Dr. Krishna Priya" width="621" height="866" loading="lazy" style="object-position:50% 15%"><figcaption>Dr. Krishna Priya</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Very good service and specially doctor Krishna. She gave me very good advice and was friendly. I love the place and definitely I will recommend it to my friends.”</p><footer><b>Kushpal K.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="9 of 10">
-          <figure class="slide__pic"><img src="assets/img/doctors/faseela.jpg" alt="Dr. Faseela Pozhithara" width="840" height="1200" loading="lazy" style="object-position:50% 20%"><figcaption>Dr. Faseela Pozhithara</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“It’s been my clinic since 2021. Very accommodating staff and I recommend Dr. Faseela, very nice doctor.”</p><footer><b>Sharla Y.</b> · Google review</footer></blockquote>
-        </li>
-        <li class="slide" data-slide aria-roledescription="slide" aria-label="10 of 10">
-          <figure class="slide__pic"><img src="assets/img/clinic/reception.jpg" alt="The Pearlecent reception" width="1600" height="800" loading="lazy" style="object-position:30% 50%"><figcaption>The Pearlecent team</figcaption></figure>
-          <blockquote class="slide__quote"><span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></svg></span><p>“Always accommodating and very fast, from the doctor to the staff. Recommended already to my cousin for cleaning and braces adjustment.”</p><footer><b>Cherry Mae A.</b> · Google review</footer></blockquote>
-        </li>
+      <ul class="slides"><?= render_review_slides('') ?>
       </ul>
       <div class="carousel__ctrl">
         <button class="round" type="button" data-prev aria-label="Previous review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -279,7 +212,8 @@
   <div class="ftr__base wrap"><p>© <span data-year>2026</span> Pearlecent Shifah Medical Center L.L.C. Results vary from person to person; your dentist explains the benefits, risks and alternatives of each treatment before it starts.</p>
     <p><a href="about.html">About</a><a href="treatments.html">Treatments</a><a href="index.html#visit">Contact</a></p></div>
 </footer>
-<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
-<script src="assets/js/site.js?v=28" defer></script>
+<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
+<script>window.PEARL_LEAD = "api/lead.php";</script>
+<script src="assets/js/site.js?v=29" defer></script>
 </body>
 </html>
