@@ -975,3 +975,6 @@ h2, h3 { letter-spacing: -0.01em; }
 }
 .ba__track { grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
 @media (min-width: 48em) { .bacase__frame { aspect-ratio: 5 / 4; } }
+
+/* v22: treatment intros */
+.tsec__intro { color: var(--soft); max-width: 36rem; margin: 1.1rem 0 .25rem; }

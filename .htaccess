@@ -1,9 +1,22 @@
 # Pearlecent website
 DirectoryIndex index.php index.html
 Options -Indexes
+ErrorDocument 404 /404.php
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  # One address for the whole site: https://pearlecentdental.com (no www, no old demo address)
+  RewriteCond %{HTTP_HOST} !^pearlecentdental\.com$ [NC]
+  RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+  RewriteRule ^ https://pearlecentdental.com%{REQUEST_URI} [R=301,L,NE]
+  # One address per page
+  RewriteCond %{THE_REQUEST} \s/+index\.(html|php)[\s?]
+  RewriteRule ^ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+(about|treatments)\.php[\s?]
+  RewriteRule ^ /%1.html [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+dentist\.php\?slug=([a-z0-9-]+)
+  RewriteRule ^ /dentists/%1.html? [R=301,L]
+  RewriteRule ^sitemap\.xml$ sitemap.php [L]
   # Private folders and files are never served
   RewriteRule ^(inc|data|dev)(/|$) - [F,L]
   RewriteRule (^|/)\.(git|env|ht) - [F,L]
@@ -23,4 +36,5 @@ Options -Indexes
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>
