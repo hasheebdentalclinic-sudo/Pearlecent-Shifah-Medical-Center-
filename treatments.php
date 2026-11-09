@@ -6,6 +6,7 @@
 <title>Treatments | Pearlecent dental clinic, Al Rigga, Deira</title>
 <meta name="description" content="Check-ups and cleaning, fillings and root canals, cosmetic dentistry, braces and aligners, dentures and retainers, and children&#x27;s dentistry at Pearlecent, Deira.">
 <meta name="theme-color" content="#FFFFFF">
+<meta name="facebook-domain-verification" content="ly3jwc6axcnyjovtp7dyw9u9p1q24b" />
 <meta property="og:title" content="Treatments | Pearlecent dental clinic, Al Rigga, Deira">
 <meta property="og:description" content="Check-ups and cleaning, fillings and root canals, cosmetic dentistry, braces and aligners, dentures and retainers, and children&#x27;s dentistry at Pearlecent, Deira.">
 <meta property="og:image" content="assets/img/clinic/reception.jpg">

@@ -12,6 +12,7 @@ $mine = reviews_for($d['slug']);
 <title><?= h($d['name'] . ', ' . $d['title']) ?> | Pearlecent, Deira</title>
 <meta name="description" content="<?= h($d['name'] . ', ' . $d['title'] . ' with ' . $d['years'] . ' years of experience at Pearlecent Shifah Medical Center, Al Rigga, Deira. Book your appointment online.') ?>">
 <meta name="theme-color" content="#FFFFFF">
+<meta name="facebook-domain-verification" content="ly3jwc6axcnyjovtp7dyw9u9p1q24b" />
 <meta property="og:title" content="<?= h($d['name'] . ', ' . $d['title']) ?> | Pearlecent, Deira">
 <meta property="og:description" content="<?= h($d['name'] . ', ' . $d['title'] . ' with ' . $d['years'] . ' years of experience at Pearlecent Shifah Medical Center, Al Rigga, Deira. Book your appointment online.') ?>">
 <meta property="og:image" content="../assets/img/clinic/reception.jpg">

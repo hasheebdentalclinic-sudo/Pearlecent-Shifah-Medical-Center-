@@ -6,6 +6,7 @@
 <title>About Pearlecent | Dental clinic in Al Rigga, Deira since 2018</title>
 <meta name="description" content="Pearlecent Shifah Medical Center opened in 2018 as Dr. Safar Clinic. Four General Dentists and an Orthodontic Specialist, 7,000+ patients, open until 10 PM in Al Rigga, Deira.">
 <meta name="theme-color" content="#FFFFFF">
+<meta name="facebook-domain-verification" content="ly3jwc6axcnyjovtp7dyw9u9p1q24b" />
 <meta property="og:title" content="About Pearlecent | Dental clinic in Al Rigga, Deira since 2018">
 <meta property="og:description" content="Pearlecent Shifah Medical Center opened in 2018 as Dr. Safar Clinic. Four General Dentists and an Orthodontic Specialist, 7,000+ patients, open until 10 PM in Al Rigga, Deira.">
 <meta property="og:image" content="assets/img/clinic/reception.jpg">

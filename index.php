@@ -6,6 +6,7 @@
 <title>Pearlecent | Dental clinic in Al Rigga, Deira, Dubai</title>
 <meta name="description" content="Pearlecent Shifah Medical Center, a family dental clinic on Al Rigga Road, Deira, Dubai. General Dentists and an Orthodontic Specialist, free first check-up, open until 10 PM. Book your appointment online.">
 <meta name="theme-color" content="#FFFFFF">
+<meta name="facebook-domain-verification" content="ly3jwc6axcnyjovtp7dyw9u9p1q24b" />
 <meta property="og:title" content="Pearlecent | Dental clinic in Al Rigga, Deira, Dubai">
 <meta property="og:description" content="Pearlecent Shifah Medical Center, a family dental clinic on Al Rigga Road, Deira, Dubai. General Dentists and an Orthodontic Specialist, free first check-up, open until 10 PM. Book your appointment online.">
 <meta property="og:image" content="assets/img/clinic/reception.jpg">
