@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="admin/icons/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=30">
+<link rel="stylesheet" href="assets/css/site.css?v=31">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dentist", "@id": "https://pearlecentdental.com/#clinic", "name": "Pearlecent Shifah Medical Center L.L.C.", "alternateName": ["Pearlecent Dental", "Pearlescent Dental", "Pearlescent Shifah Medical Center", "Dr. Safar Clinic"], "url": "https://pearlecentdental.com/", "logo": "https://pearlecentdental.com/admin/icons/icon-512.png", "image": "https://pearlecentdental.com/assets/img/clinic/reception.jpg", "telephone": "+971 55 339 6152", "email": "pearlescentadmin@dentalclinicuae.com", "foundingDate": "2018", "address": {"@type": "PostalAddress", "streetAddress": "Room 104, First Floor, Al Zarooni Building, 73 Al Rigga Road", "addressLocality": "Al Muraqqabat, Deira", "addressRegion": "Dubai", "addressCountry": "AE"}, "geo": {"@type": "GeoCoordinates", "latitude": 25.2624015, "longitude": 55.3266563}, "hasMap": "https://maps.app.goo.gl/LxxALHqsNsGpUrj29", "areaServed": ["Deira", "Al Rigga", "Dubai"], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "22:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "13:00", "closes": "21:00"}], "sameAs": ["https://www.instagram.com/pearlescent_dental", "https://www.facebook.com/people/Pearlecent-SHifah-Medical-Centre/100090357010872/", "https://www.tiktok.com/@pearlecentshifah", "https://maps.app.goo.gl/LxxALHqsNsGpUrj29"]}</script>
 </head>
@@ -68,7 +68,7 @@
       <ul class="hero2__stats">
         <li data-rise style="--i:4"><b><span data-count="7000">7,000</span>+</b><span>Happy Clients</span></li>
         <li data-rise style="--i:5"><b><?= sprintf('%02d', dentist_count()) ?></b><span>Experienced dentists</span></li>
-        <li data-rise style="--i:6"><a class="hero2__g" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener"><b>4.9</b><span>Google rating, 213 reviews</span><em><span class="hide-sm">Read Google reviews</span><span class="show-sm">Reviews</span> ↗</em></a></li>
+        <li data-rise style="--i:6"><a class="hero2__g" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener"><b>4.9</b><span>Google rating, 213 reviews</span><em>Read reviews ↗</em></a></li>
       </ul>
     </div>
   </div>
