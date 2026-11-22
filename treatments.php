@@ -1,6 +1,13 @@
 <?php require __DIR__ . '/inc/boot.php'; ?><!doctype html>
 <html lang="en">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18518577261"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18518577261');
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Treatments | Pearlecent dental clinic, Al Rigga, Deira</title>
@@ -22,7 +29,7 @@
 <link rel="apple-touch-icon" href="admin/icons/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=31">
+<link rel="stylesheet" href="assets/css/site.css?v=32">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dentist", "@id": "https://pearlecentdental.com/#clinic", "name": "Pearlecent Shifah Medical Center L.L.C.", "alternateName": ["Pearlecent Dental", "Pearlescent Dental", "Pearlescent Shifah Medical Center", "Dr. Safar Clinic"], "url": "https://pearlecentdental.com/", "logo": "https://pearlecentdental.com/admin/icons/icon-512.png", "image": "https://pearlecentdental.com/assets/img/clinic/reception.jpg", "telephone": "+971 55 339 6152", "email": "pearlescentadmin@dentalclinicuae.com", "foundingDate": "2018", "address": {"@type": "PostalAddress", "streetAddress": "Room 104, First Floor, Al Zarooni Building, 73 Al Rigga Road", "addressLocality": "Al Muraqqabat, Deira", "addressRegion": "Dubai", "addressCountry": "AE"}, "geo": {"@type": "GeoCoordinates", "latitude": 25.2624015, "longitude": 55.3266563}, "hasMap": "https://maps.app.goo.gl/LxxALHqsNsGpUrj29", "areaServed": ["Deira", "Al Rigga", "Dubai"], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "22:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "13:00", "closes": "21:00"}], "sameAs": ["https://www.instagram.com/pearlescent_dental", "https://www.facebook.com/people/Pearlecent-SHifah-Medical-Centre/100090357010872/", "https://www.tiktok.com/@pearlecentshifah", "https://maps.app.goo.gl/LxxALHqsNsGpUrj29"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pearlecentdental.com/"}, {"@type": "ListItem", "position": 2, "name": "Treatments", "item": "https://pearlecentdental.com/treatments.html"}]}</script>
@@ -66,7 +73,7 @@
     <div class="tsec__txt">
       <h2 id="general-h" data-reveal>General Dentistry</h2>
       <p class="tsec__intro" data-reveal>Regular check-ups and cleaning help catch problems early. Your first general dental consultation at Pearlecent is free, and your dentist explains what they find before suggesting any treatment.</p>
-      <ul class="tsec__list" data-reveal><li>Free Dental Examinations and Check-ups</li><li>Tooth Cleaning (Scaling and Polishing)</li><li>Tooth Extraction (Surgical / Non-Surgical)</li></ul>
+      <ul class="tsec__list" data-reveal><li>Free Dental Examinations and Check-ups</li><li>Tooth Cleaning (Scaling and Polishing)</li><li>Tooth Extraction (Surgical / Non-Surgical)</li></ul><p class="tsec__more" data-reveal>Read more: <a class="link-u" href="treatments/dental-checkup-deira.html">Dental Check-up in Deira</a> · <a class="link-u" href="treatments/teeth-cleaning-deira.html">Teeth Cleaning in Deira</a> · <a class="link-u" href="treatments/tooth-extraction-deira.html">Tooth Extraction in Deira</a></p>
       <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20General%20Dentistry." data-lead-type="Treatment enquiry" data-lead-treatment="General Dentistry">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
@@ -77,7 +84,7 @@
     <div class="tsec__txt">
       <h2 id="restorative-h" data-reveal>Restorative Dentistry</h2>
       <p class="tsec__intro" data-reveal>Restorative treatment repairs teeth affected by decay, cracks or wear, from tooth-coloured fillings to root canal treatment, crowns and bridges.</p>
-      <ul class="tsec__list" data-reveal><li>Tooth Colored Fillings (Composite / GIC)</li><li>Root Canal Treatment</li><li>Dental Crowns</li><li>Dental Bridges</li><li>Inlays / Onlays</li></ul>
+      <ul class="tsec__list" data-reveal><li>Tooth Colored Fillings (Composite / GIC)</li><li>Root Canal Treatment</li><li>Dental Crowns</li><li>Dental Bridges</li><li>Inlays / Onlays</li></ul><p class="tsec__more" data-reveal>Read more: <a class="link-u" href="treatments/dental-fillings-deira.html">Dental Fillings in Deira</a> · <a class="link-u" href="treatments/root-canal-deira.html">Root Canal Treatment in Deira</a></p>
       <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Restorative%20Dentistry." data-lead-type="Treatment enquiry" data-lead-treatment="Restorative Dentistry">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
@@ -88,7 +95,7 @@
     <div class="tsec__txt">
       <h2 id="cosmetic-h" data-reveal>Cosmetic Dentistry</h2>
       <p class="tsec__intro" data-reveal>Cosmetic dentistry changes the colour, shape or alignment of teeth. Your dentist talks you through the options, what each involves and what to expect before you decide.</p>
-      <ul class="tsec__list" data-reveal><li>Teeth Whitening</li><li>Dental Veneers – Composite, E-max and Zirconia</li><li>Full Mouth Veneers / Hollywood Smile</li><li>Tooth Jewellery</li><li>Smile Makeover</li><li>Snap On Veneers</li></ul>
+      <ul class="tsec__list" data-reveal><li>Teeth Whitening</li><li>Dental Veneers – Composite, E-max and Zirconia</li><li>Full Mouth Veneers / Hollywood Smile</li><li>Tooth Jewellery</li><li>Smile Makeover</li><li>Snap On Veneers</li></ul><p class="tsec__more" data-reveal>Read more: <a class="link-u" href="treatments/teeth-whitening-deira.html">Teeth Whitening in Deira</a> · <a class="link-u" href="treatments/veneers-deira.html">Dental Veneers in Deira</a></p>
       <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Cosmetic%20Dentistry." data-lead-type="Treatment enquiry" data-lead-treatment="Cosmetic Dentistry">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
@@ -99,7 +106,7 @@
     <div class="tsec__txt">
       <h2 id="orthodontics-h" data-reveal>Orthodontics – Braces &amp; Teeth Alignment</h2>
       <p class="tsec__intro" data-reveal>Braces and clear aligners move teeth into better alignment over time. Treatment starts with an orthodontic consultation to plan the approach that suits you.</p>
-      <ul class="tsec__list" data-reveal><li>Metal Braces</li><li>Ceramic and Crystal Braces</li><li>Lingual Braces</li><li>Damon Braces / Self Ligating</li><li>Clear Aligners / Invisalign</li></ul>
+      <ul class="tsec__list" data-reveal><li>Metal Braces</li><li>Ceramic and Crystal Braces</li><li>Lingual Braces</li><li>Damon Braces / Self Ligating</li><li>Clear Aligners / Invisalign</li></ul><p class="tsec__more" data-reveal>Read more: <a class="link-u" href="treatments/braces-deira.html">Braces in Deira</a></p>
       <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Orthodontics%20%E2%80%93%20Braces%20%26%20Teeth%20Alignment." data-lead-type="Treatment enquiry" data-lead-treatment="Orthodontics – Braces &amp; Teeth Alignment">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
@@ -110,7 +117,7 @@
     <div class="tsec__txt">
       <h2 id="dentures-h" data-reveal>Dentures &amp; Retainers</h2>
       <p class="tsec__intro" data-reveal>Dentures replace missing teeth, and retainers hold teeth in place after orthodontic treatment. Options include partial, complete, clear, lingual and Hawley types.</p>
-      <ul class="tsec__list" data-reveal><li>Removable Partial Dentures (Acrylic / Flexible)</li><li>Complete Denture</li><li>Clear Retainers</li><li>Lingual Retainers</li><li>Hawley’s Retainers</li></ul>
+      <ul class="tsec__list" data-reveal><li>Removable Partial Dentures (Acrylic / Flexible)</li><li>Complete Denture</li><li>Clear Retainers</li><li>Lingual Retainers</li><li>Hawley’s Retainers</li></ul><p class="tsec__more" data-reveal>Read more: <a class="link-u" href="treatments/dentures-deira.html">Dentures and Retainers in Deira</a></p>
       <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Dentures%20%26%20Retainers." data-lead-type="Treatment enquiry" data-lead-treatment="Dentures &amp; Retainers">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
@@ -121,7 +128,7 @@
     <div class="tsec__txt">
       <h2 id="other-h" data-reveal>Other Dental Services</h2>
       <p class="tsec__intro" data-reveal>Care for the whole family, including children&#x27;s dentistry, fluoride treatment, mouth guards, TMJ consultations and digital dental X-rays.</p>
-      <ul class="tsec__list" data-reveal><li>TMJ Consultation</li><li>Mouth Guard</li><li>Preventive Dental Care</li><li>Pedodontic Treatments</li><li>Fluoride Treatment</li><li>Dental X-ray</li><li>Digital Dentistry</li></ul>
+      <ul class="tsec__list" data-reveal><li>TMJ Consultation</li><li>Mouth Guard</li><li>Preventive Dental Care</li><li>Pedodontic Treatments</li><li>Fluoride Treatment</li><li>Dental X-ray</li><li>Digital Dentistry</li></ul><p class="tsec__more" data-reveal>Read more: <a class="link-u" href="treatments/kids-dentist-deira.html">Kids Dentist in Deira</a></p>
       <p data-reveal><a class="button" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Other%20Dental%20Services." data-lead-type="Treatment enquiry" data-lead-treatment="Other Dental Services">Enquire about this treatment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
     </div>
   </div>
@@ -149,5 +156,19 @@
 <a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
 <script>window.PEARL_LEAD = "api/lead.php";</script>
 <script src="assets/js/site.js?v=30" defer></script>
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a'); if (!a || typeof gtag !== 'function') return;
+  var h = a.getAttribute('href') || '';
+  if (/wa\.me|whatsapp/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18518577261/LdJnCMf6nL0dEO2grP5E'});
+  } else if (/^tel:/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18518577261/huaICMWmor0dEO2grP5E'});
+  }
+}, true);
+document.addEventListener('submit', function () {
+  if (typeof gtag === 'function') gtag('event', 'conversion', {send_to: 'AW-18518577261/LdJnCMf6nL0dEO2grP5E'});
+}, true);
+</script>
 </body>
 </html>

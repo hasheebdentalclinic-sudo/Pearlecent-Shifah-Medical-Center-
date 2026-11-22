@@ -49,12 +49,16 @@ function paragraphs(?string $s): array
     return array_values(array_filter(array_map('trim', preg_split('/\R\s*\R/', (string) $s) ?: []), 'strlen'));
 }
 
-function render_doc_cards(string $up = '', ?string $skip = null): string
+function render_doc_cards(string $up = '', ?string $skip = null, string $only = ''): string
 {
     $out = '';
     $i = 0;
     foreach (dentists_visible() as $d) {
         if ($d['slug'] === $skip) continue;
+        // $only: 'ortho' = orthodontic titles only, 'general' = General Dentist titles only
+        $isOrtho = stripos((string) $d['title'], 'orthodont') !== false;
+        if ($only === 'ortho' && !$isOrtho) continue;
+        if ($only === 'general' && ($isOrtho || stripos((string) $d['title'], 'general dentist') === false)) continue;
         $w = (int) ($d['photo_w'] ?: 900); $hh = (int) ($d['photo_h'] ?: 1200);
         $out .= '
       <a class="dcard" href="' . h($up . 'dentists/' . $d['slug'] . '.html') . '" data-reveal style="--n:' . ($i % 5) . '">

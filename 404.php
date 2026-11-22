@@ -1,6 +1,13 @@
 <?php if (!function_exists('dentists_visible')) require __DIR__ . '/inc/boot.php'; if (!headers_sent()) http_response_code(404); ?><!doctype html>
 <html lang="en">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18518577261"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18518577261');
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Page not found | Pearlecent</title>
@@ -23,7 +30,7 @@
 <link rel="apple-touch-icon" href="/admin/icons/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=31">
+<link rel="stylesheet" href="/assets/css/site.css?v=32">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dentist", "@id": "https://pearlecentdental.com/#clinic", "name": "Pearlecent Shifah Medical Center L.L.C.", "alternateName": ["Pearlecent Dental", "Pearlescent Dental", "Pearlescent Shifah Medical Center", "Dr. Safar Clinic"], "url": "https://pearlecentdental.com/", "logo": "https://pearlecentdental.com/admin/icons/icon-512.png", "image": "https://pearlecentdental.com/assets/img/clinic/reception.jpg", "telephone": "+971 55 339 6152", "email": "pearlescentadmin@dentalclinicuae.com", "foundingDate": "2018", "address": {"@type": "PostalAddress", "streetAddress": "Room 104, First Floor, Al Zarooni Building, 73 Al Rigga Road", "addressLocality": "Al Muraqqabat, Deira", "addressRegion": "Dubai", "addressCountry": "AE"}, "geo": {"@type": "GeoCoordinates", "latitude": 25.2624015, "longitude": 55.3266563}, "hasMap": "https://maps.app.goo.gl/LxxALHqsNsGpUrj29", "areaServed": ["Deira", "Al Rigga", "Dubai"], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "22:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "13:00", "closes": "21:00"}], "sameAs": ["https://www.instagram.com/pearlescent_dental", "https://www.facebook.com/people/Pearlecent-SHifah-Medical-Centre/100090357010872/", "https://www.tiktok.com/@pearlecentshifah", "https://maps.app.goo.gl/LxxALHqsNsGpUrj29"]}</script>
 </head>
@@ -75,5 +82,19 @@
 <a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
 <script>window.PEARL_LEAD = "/api/lead.php";</script>
 <script src="/assets/js/site.js?v=30" defer></script>
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a'); if (!a || typeof gtag !== 'function') return;
+  var h = a.getAttribute('href') || '';
+  if (/wa\.me|whatsapp/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18518577261/LdJnCMf6nL0dEO2grP5E'});
+  } else if (/^tel:/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18518577261/huaICMWmor0dEO2grP5E'});
+  }
+}, true);
+document.addEventListener('submit', function () {
+  if (typeof gtag === 'function') gtag('event', 'conversion', {send_to: 'AW-18518577261/LdJnCMf6nL0dEO2grP5E'});
+}, true);
+</script>
 </body>
 </html>

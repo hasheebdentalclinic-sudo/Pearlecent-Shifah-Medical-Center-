@@ -978,3 +978,33 @@ h2, h3 { letter-spacing: -0.01em; }
 
 /* v22: treatment intros */
 .tsec__intro { color: var(--soft); max-width: 36rem; margin: 1.1rem 0 .25rem; }
+
+/* Treatment landing pages (/treatments/*.html) and links to them */
+.tsec__more { margin-top: -1rem; margin-bottom: 1.75rem; font-size: .9375rem; color: var(--ink-2); }
+.land-btns { flex-wrap: wrap; }
+.land-body .dbody__in > div > p { max-width: 58ch; }
+.land-h2 { margin-top: 2.5rem; }
+.land-pic { border-radius: var(--r-md); overflow: hidden; margin-bottom: 2rem; aspect-ratio: 4 / 3; }
+.land-pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.land-steps { display: grid; gap: .5rem; counter-reset: st; }
+.land-steps li { counter-increment: st; display: flex; gap: .9rem; padding: .9rem 1.1rem; border-radius: var(--r-sm); background: var(--mist); }
+.land-steps li::before { content: counter(st); flex: none; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--pink); color: #fff; font-size: .8125rem; font-weight: 600; }
+.land-faq { padding-top: 0; }
+.land-faq__in { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.faq { display: grid; gap: .6rem; }
+.faq details { border-radius: var(--r-sm); background: var(--mist); padding: 1rem 1.2rem; }
+.faq summary { cursor: pointer; font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; color: var(--pink); font-size: 1.4em; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.dbody .faq details p { margin-top: .6rem; max-width: none; }
+.land-visit { padding: clamp(1.5rem, 3vw, 2.25rem); border-radius: var(--r-md); background: var(--blush); }
+.dbody .land-visit h2 { font-size: clamp(1.35rem, 1.1rem + 1vw, 1.75rem); }
+.dbody .land-visit p { max-width: none; }
+.land-more { padding-block: var(--section); }
+.land-more h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem); font-weight: 500; margin-bottom: 1.25rem; }
+.land-more__in { display: flex; flex-wrap: wrap; gap: .5rem; }
+.land-more__back { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.75rem; }
+@media (max-width: 47.99em) { .land-faq__in { grid-template-columns: 1fr; } }
+.land-btns .button--outline { color: var(--berry); box-shadow: inset 0 0 0 1.5px var(--berry); }
+@media (hover: hover) { .land-btns .button--outline:hover { background: var(--berry); color: #fff; } }

@@ -16,6 +16,8 @@ ErrorDocument 404 /404.php
   RewriteRule ^ /%1.html [R=301,L]
   RewriteCond %{THE_REQUEST} \s/+dentist\.php\?slug=([a-z0-9-]+)
   RewriteRule ^ /dentists/%1.html? [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+treatments/([a-z0-9-]+)\.php[\s?]
+  RewriteRule ^ /treatments/%1.html [R=301,L]
   RewriteRule ^sitemap\.xml$ sitemap.php [L]
   # Private folders and files are never served
   RewriteRule ^(inc|data|dev)(/|$) - [F,L]
@@ -25,6 +27,7 @@ ErrorDocument 404 /404.php
   RewriteRule ^about\.html$ about.php [L]
   RewriteRule ^treatments\.html$ treatments.php [L]
   RewriteRule ^dentists/([a-z0-9-]+)\.html$ dentist.php?slug=$1 [L,QSA]
+  RewriteRule ^treatments/([a-z0-9-]+)\.html$ treatments/$1.php [L]
 </IfModule>
 
 <FilesMatch "\.(sqlite|sqlite-journal|json|key|md|py|cjs|sh|log|bak|ini)$">

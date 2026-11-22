@@ -1,0 +1,179 @@
+<?php require __DIR__ . '/../inc/boot.php'; ?><!doctype html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18518577261"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18518577261');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teeth Whitening in Deira, Dubai | Pearlecent Dental</title>
+<meta name="description" content="Teeth whitening at Pearlecent, Al Rigga Road, Deira. Your dentist checks your teeth first. Your first general dental consultation is free. Book online.">
+<link rel="canonical" href="https://pearlecentdental.com/treatments/teeth-whitening-deira.html">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="facebook-domain-verification" content="ly3jwc6axcnyjovtp7dyw9u9p1q24b" />
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pearlecent Shifah Medical Center">
+<meta property="og:locale" content="en_AE">
+<meta property="og:url" content="https://pearlecentdental.com/treatments/teeth-whitening-deira.html">
+<meta property="og:title" content="Teeth Whitening in Deira, Dubai | Pearlecent Dental">
+<meta property="og:description" content="Teeth whitening at Pearlecent, Al Rigga Road, Deira. Your dentist checks your teeth first. Your first general dental consultation is free. Book online.">
+<meta property="og:image" content="https://pearlecentdental.com/assets/img/clinic/reception.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../admin/icons/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/kanit-300.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=32">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dentist", "@id": "https://pearlecentdental.com/#clinic", "name": "Pearlecent Shifah Medical Center L.L.C.", "alternateName": ["Pearlecent Dental", "Pearlescent Dental", "Pearlescent Shifah Medical Center", "Dr. Safar Clinic"], "url": "https://pearlecentdental.com/", "logo": "https://pearlecentdental.com/admin/icons/icon-512.png", "image": "https://pearlecentdental.com/assets/img/clinic/reception.jpg", "telephone": "+971 55 339 6152", "email": "pearlescentadmin@dentalclinicuae.com", "foundingDate": "2018", "address": {"@type": "PostalAddress", "streetAddress": "Room 104, First Floor, Al Zarooni Building, 73 Al Rigga Road", "addressLocality": "Al Muraqqabat, Deira", "addressRegion": "Dubai", "addressCountry": "AE"}, "geo": {"@type": "GeoCoordinates", "latitude": 25.2624015, "longitude": 55.3266563}, "hasMap": "https://maps.app.goo.gl/LxxALHqsNsGpUrj29", "areaServed": ["Deira", "Al Rigga", "Dubai"], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "09:00", "closes": "22:00"}, {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "13:00", "closes": "21:00"}], "sameAs": ["https://www.instagram.com/pearlescent_dental", "https://www.facebook.com/people/Pearlecent-SHifah-Medical-Centre/100090357010872/", "https://www.tiktok.com/@pearlecentshifah", "https://maps.app.goo.gl/LxxALHqsNsGpUrj29"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "@id": "https://pearlecentdental.com/treatments/teeth-whitening-deira.html#faq", "url": "https://pearlecentdental.com/treatments/teeth-whitening-deira.html", "name": "Teeth Whitening in Deira", "inLanguage": "en", "publisher": {"@id": "https://pearlecentdental.com/#clinic"}, "about": {"@id": "https://pearlecentdental.com/#clinic"}, "mainEntity": [{"@type": "Question", "name": "Will my teeth feel sensitive?", "acceptedAnswer": {"@type": "Answer", "text": "Some people have short-term sensitivity during or after whitening. It usually settles. Tell the dentist if your teeth are already sensitive."}}, {"@type": "Question", "name": "How white will my teeth get?", "acceptedAnswer": {"@type": "Answer", "text": "Results vary from person to person. The dentist gives you a realistic idea after checking your teeth."}}, {"@type": "Question", "name": "How can I keep the result for longer?", "acceptedAnswer": {"@type": "Answer", "text": "Brush twice a day, cut down on tea, coffee and smoking, and keep your regular check-ups and cleanings."}}, {"@type": "Question", "name": "Can I whiten my crowns or veneers?", "acceptedAnswer": {"@type": "Answer", "text": "No. Whitening works only on natural teeth. The dentist can explain other options."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pearlecentdental.com/"}, {"@type": "ListItem", "position": 2, "name": "Treatments", "item": "https://pearlecentdental.com/treatments.html"}, {"@type": "ListItem", "position": 3, "name": "Teeth Whitening in Deira", "item": "https://pearlecentdental.com/treatments/teeth-whitening-deira.html"}]}</script>
+</head>
+<body class="pg-treat pg-land">
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr" data-hdr>
+  <div class="hdr__in">
+    <a class="brand" href=".././" aria-label="Pearlecent, home">
+      <img src="../assets/img/mark.svg" alt="" width="34" height="37">
+      <span class="brand__t">Pearlecent<small>Shifah Medical Center</small></span>
+    </a>
+    <nav class="hdr__nav" aria-label="Main" id="menu"><a class="hlink" href=".././">Home</a><a class="hlink" href="../about.html">About</a><a class="hlink is-active" href="../treatments.html" aria-current="page">Treatments</a><a class="hlink" href=".././#dentists">Dentists</a><a class="hlink" href=".././#reviews">Reviews</a><a class="hlink" href=".././#visit">Contact</a>
+      <div class="hdr__extra">
+        <p class="hdr__tel"><a href="tel:+971553396152"><span>Mobile</span>+971 55 339 6152</a><a href="tel:+97142664100"><span>Landline</span>04 266 4100</a><a href="mailto:pearlescentadmin@dentalclinicuae.com"><span>Email</span>pearlescentadmin@dentalclinicuae.com</a></p>
+        <p class="hdr__soc"><a class="soc" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener" aria-label="Pearlecent on Google reviews" title="Google reviews"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5L6.4 10C7.2 7.7 9.4 5.9 12 5.9z"/></svg></a><a class="soc" href="https://www.instagram.com/pearlescent_dental" target="_blank" rel="noopener" aria-label="Pearlecent on Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a><a class="soc" href="https://www.facebook.com/people/Pearlecent-SHifah-Medical-Centre/100090357010872/" target="_blank" rel="noopener" aria-label="Pearlecent on Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.4V21z"/></svg></a><a class="soc" href="https://www.tiktok.com/@pearlecentshifah" target="_blank" rel="noopener" aria-label="Pearlecent on TikTok" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.4 2.1 1.7 3.5 3.9 3.7v3a7 7 0 0 1-3.9-1.2v6.2A5.9 5.9 0 1 1 11.2 9v3.1a2.8 2.8 0 1 0 2.4 2.8V3z"/></svg></a></p>
+      </div>
+      <a class="button hdr__book" href=".././#book">Book appointment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </nav>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-burger><span></span><span></span><span class="sr-only">Menu</span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="phero">
+  <div class="phero__in wrap">
+    <div class="phero__txt">
+      <p class="phero__crumb" data-rise style="--i:0"><a href=".././">Home</a> <span aria-hidden="true">/</span> <a href="../treatments.html">Treatments</a> <span aria-hidden="true">/</span> Teeth Whitening</p>
+      <h1 class="lines"><span class="line"><span data-line style="--i:1">Teeth Whitening in Deira</span></span></h1>
+      <p class="phero__lead" data-rise style="--i:3">Teeth whitening lightens the colour of natural teeth. At Pearlecent in Al Rigga, your dentist checks your teeth first and explains what to expect.</p>
+      <p class="hero__btns land-btns" data-rise style="--i:4"><a class="button button--lg" href="#book">Book appointment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="button button--lg button--soft" href="https://wa.me/971553396152?text=Hello%20Pearlecent%2C%20I%20would%20like%20to%20ask%20about%20Teeth%20Whitening." target="_blank" rel="noopener" data-lead-type="Treatment enquiry" data-lead-treatment="Teeth Whitening">Chat with us</a><a class="button button--lg button--outline" href="tel:+971553396152">Call +971 55 339 6152</a></p>
+    </div>
+    <div class="phero__arts" aria-hidden="true"><svg class="art" viewBox="0 0 160 160" role="img" aria-label="Tooth with sparkles"><g transform="translate(-6 6) scale(0.92)"><path class="art-fill" d="M58 30C40 30 32 46 34 62c2 16 10 24 12 42 2 18 6 32 14 32s8-24 20-24 12 24 20 24 12-14 14-32c2-18 10-26 12-42 2-16-6-32-24-32-10 0-14 6-22 6s-12-6-22-6Z"/><path class="art-line" pathLength="1" d="M58 30C40 30 32 46 34 62c2 16 10 24 12 42 2 18 6 32 14 32s8-24 20-24 12 24 20 24 12-14 14-32c2-18 10-26 12-42 2-16-6-32-24-32-10 0-14 6-22 6s-12-6-22-6Z"/><path class="art-line" pathLength="1" d="M60 52c4-8 12-10 18-8"/></g><path class="art-spark" style="--d:0s" d="M130 22Q130 34 142 34Q130 34 130 46Q130 34 118 34Q130 34 130 22Z"/><path class="art-spark" style="--d:0.6s" d="M142 63Q142 70 149 70Q142 70 142 77Q142 70 135 70Q142 70 142 63Z"/><path class="art-spark" style="--d:1.2s" d="M24 32Q24 40 32 40Q24 40 24 48Q24 40 16 40Q24 40 24 32Z"/></svg></div>
+  </div>
+</section>
+<p class="risk wrap">Every dental treatment carries some risk, and results vary from person to person. Your dentist will explain the benefits, risks and alternatives before any treatment begins.</p>
+<section class="dbody land-body">
+  <div class="wrap dbody__in">
+    <div>
+      <h2 data-reveal>What is teeth whitening?</h2><p data-reveal>Whitening uses a bleaching gel to lighten the shade of the tooth enamel. It works on natural teeth only. It does not change the colour of fillings, crowns or veneers.</p><p data-reveal>The amount of change is different for each person. It depends on the cause of the stains and the natural shade of your teeth. Whitening does not last forever. Tea, coffee, smoking and some foods can stain the teeth again over time.</p>
+      <h2 class="land-h2" data-reveal>Who is it for?</h2><p data-reveal>Whitening is for adults with healthy teeth and gums who want a lighter shade. Before whitening, the dentist checks for decay and gum problems, because these need treatment first. It may not be suitable if you have untreated decay, gum disease or very sensitive teeth, or if you are pregnant.</p><p data-reveal>Stains caused by some medicines or by an injury may not respond well to whitening. In that case, the dentist may talk with you about <a class="link-u" href="veneers-deira.html">veneers</a>.</p>
+    </div>
+    <div class="dfocus">
+      <figure class="land-pic" data-reveal><picture><source type="image/webp" srcset="../assets/img/treatments/cosmetic-600.webp?v=15 600w, ../assets/img/treatments/cosmetic-1200.webp?v=15 1200w" sizes="(max-width: 48em) 92vw, 520px"><img src="../assets/img/treatments/cosmetic-1200.jpg?v=15" srcset="../assets/img/treatments/cosmetic-600.jpg?v=15 600w, ../assets/img/treatments/cosmetic-1200.jpg?v=15 1200w" sizes="(max-width: 48em) 92vw, 520px" alt="Teeth Whitening in Deira at Pearlecent, Al Rigga" width="1200" height="1200" loading="lazy" decoding="async"></picture></figure>
+      <h2 data-reveal>How the visit works</h2>
+      <ol class="land-steps" data-reveal><li><span>The dentist checks your teeth and gums.</span></li><li><span>Your current tooth shade is recorded.</span></li><li><span>If needed, your teeth are <a class="link-u" href="teeth-cleaning-deira.html">cleaned</a> first.</span></li><li><span>Your gums are protected, and the whitening gel is applied.</span></li><li><span>The dentist gives you aftercare advice.</span></li></ol>
+    </div>
+  </div>
+</section>
+<section class="dbody land-faq" aria-labelledby="faq-h">
+  <div class="wrap land-faq__in">
+    <div>
+      <h2 id="faq-h" data-reveal>Questions about teeth whitening</h2>
+      <div class="faq"><details data-reveal><summary>Will my teeth feel sensitive?</summary><p>Some people have short-term sensitivity during or after whitening. It usually settles. Tell the dentist if your teeth are already sensitive.</p></details><details data-reveal><summary>How white will my teeth get?</summary><p>Results vary from person to person. The dentist gives you a realistic idea after checking your teeth.</p></details><details data-reveal><summary>How can I keep the result for longer?</summary><p>Brush twice a day, cut down on tea, coffee and smoking, and keep your regular check-ups and cleanings.</p></details><details data-reveal><summary>Can I whiten my crowns or veneers?</summary><p>No. Whitening works only on natural teeth. The dentist can explain other options.</p></details></div>
+    </div>
+    <div class="land-visit" data-reveal>
+      <h2>Visiting Pearlecent in Al Rigga</h2>
+      <p>Pearlecent Shifah Medical Center is a family dental clinic in Deira, open since 2018. You can find us in Room 104, on the first floor of the Al Zarooni Building, 73 Al Rigga Road.</p>
+      <p>We are open Saturday to Thursday from 9 AM to 10 PM, and on Friday from 1 PM to 9 PM. Your first general dental consultation is free. You can split your payment into 4 with Tabby or Tamara.</p>
+      <p>Before any treatment, your dentist explains the benefits, the risks, the other options and the cost. You can ask questions and take time to decide.</p>
+      <p><a class="link-u" href="https://maps.app.goo.gl/LxxALHqsNsGpUrj29" target="_blank" rel="noopener">Get directions</a></p>
+    </div>
+  </div>
+</section>
+<section class="docs" aria-labelledby="docs-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="docs-h" data-reveal>Our General Dentists</h2><p data-reveal>Meet the General Dentists at Pearlecent, Al Rigga.</p></div>
+    <div class="dgrid dgrid--4"><?= render_doc_cards('../', null, 'general') ?></div>
+  </div>
+</section>
+<section class="book" id="book" aria-labelledby="book-h">
+  <div class="wrap book__in">
+    <div class="book__side">
+      <h2 id="book-h" data-reveal>Book your appointment</h2>
+      <p class="book__lead" data-reveal>Three quick steps. We confirm your time.</p>
+      <ol class="steps"><li data-reveal style="--n:0"><span class="steps__n">1</span><h3>Choose</h3><p>Treatment, dentist, day and time.</p></li><li data-reveal style="--n:1"><span class="steps__n">2</span><h3>Send</h3><p>Your request goes to our front desk.</p></li><li data-reveal style="--n:2"><span class="steps__n">3</span><h3>We confirm</h3><p>We reply with your appointment time.</p></li></ol>
+    </div>
+    <div class="book__card" data-reveal><form class="sheet" data-composer action="https://wa.me/971553396152" method="get" novalidate>
+  <p class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+  <div class="sheet__fields">
+    <label class="fld"><span class="fld__l">Treatment</span><span class="sel"><select class="field" name="treatment"><option value="">Choose a treatment</option><option value="General Dental Consultation (Free)">General Dental Consultation (Free)</option><option value="Orthodontic Consultation">Orthodontic Consultation</option><option value="Braces (Metal, Ceramic &amp; Damon)">Braces (Metal, Ceramic &amp; Damon)</option><option value="Clear Aligners / Invisalign">Clear Aligners / Invisalign</option><option value="Dental Cleaning &amp; Polishing">Dental Cleaning &amp; Polishing</option><option value="Teeth Whitening" selected>Teeth Whitening</option><option value="Dental Veneers">Dental Veneers</option><option value="Dental Filling">Dental Filling</option><option value="Tooth Extraction">Tooth Extraction</option><option value="Dental Crowns &amp; Bridges">Dental Crowns &amp; Bridges</option><option value="Root Canal Treatment">Root Canal Treatment</option><option value="Dentures &amp; Retainers">Dentures &amp; Retainers</option><option value="Cosmetic Dentistry">Cosmetic Dentistry</option><option value="Other Dental Treatments">Other Dental Treatments</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <label class="fld"><span class="fld__l">Dentist</span><span class="sel"><select class="field" name="dentist"><?= render_dentist_options() ?></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <label class="fld"><span class="fld__l">Preferred day</span><span class="sel"><select class="field" name="day" data-days><option value="">Any day</option></select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <label class="fld"><span class="fld__l">Preferred time</span><span class="sel"><select class="field" name="time">
+      <option value="">Any time</option>
+      <option value="Morning (9 AM – 12 PM)" data-morning>Morning (9 AM – 12 PM)</option>
+      <option value="Afternoon (12 – 5 PM)">Afternoon (12 – 5 PM)</option>
+      <option value="Evening (5 – 10 PM)">Evening (5 – 10 PM)</option>
+    </select><svg class="sel__ch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span></label>
+    <label class="fld"><span class="fld__l">Your name</span><input class="field" type="text" name="name" autocomplete="name" placeholder="Maria Santos"></label>
+    <label class="fld"><span class="fld__l">Mobile number</span><input class="field" type="tel" name="mobile" autocomplete="tel" inputmode="tel" placeholder="05X XXX XXXX"></label>
+  </div>
+  <input type="hidden" name="text" value="Hello Pearlecent, I would like to book an appointment.">
+  <div class="sheet__send">
+    <button class="button button--wide" type="submit">Request appointment<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+    <p class="sheet__note">Our team will confirm your appointment time with you.</p>
+  </div>
+</form></div>
+  </div>
+</section>
+<nav class="land-more" aria-label="Other treatments">
+  <div class="wrap">
+    <h2>Other treatments in Deira</h2>
+    <p class="land-more__in"><a class="jump__a" href="dental-checkup-deira.html">Dental Check-up</a><a class="jump__a" href="teeth-cleaning-deira.html">Teeth Cleaning</a><a class="jump__a" href="dental-fillings-deira.html">Dental Fillings</a><a class="jump__a" href="root-canal-deira.html">Root Canal Treatment</a><a class="jump__a" href="tooth-extraction-deira.html">Tooth Extraction</a><a class="jump__a" href="braces-deira.html">Braces</a><a class="jump__a" href="veneers-deira.html">Dental Veneers</a><a class="jump__a" href="dentures-deira.html">Dentures and Retainers</a><a class="jump__a" href="kids-dentist-deira.html">Kids Dentist</a></p>
+    <p class="land-more__back"><a class="link-u" href="../treatments.html">See all treatments</a><a class="link-u" href=".././">Back to the home page</a></p>
+  </div>
+</nav>
+</main>
+<footer class="ftr">
+  <div class="ftr__cta wrap">
+    <h2>Ready for your visit?</h2>
+    <p>Send us your preferred day and time, and we confirm your appointment.</p>
+    <p class="ftr__btns"><a class="button" href=".././#book">Book appointment</a><a class="button button--outline" href="tel:+971553396152">Call +971 55 339 6152</a></p>
+  </div>
+  <div class="ftr__grid wrap">
+    <div class="ftr__brand">
+      <a class="brand brand--light" href=".././"><img src="../assets/img/mark.svg" alt="" width="40" height="43"><span class="brand__t">Pearlecent<small>Shifah Medical Center L.L.C.</small></span></a>
+      <p>A family dental clinic on Al Rigga Road, Deira, since 2018.</p>
+    </div>
+    <div><h3>Visit</h3><p>Room 104, First Floor<br>Al Zarooni Building<br>73 Al Rigga Road, Al Muraqqabat, Deira, Dubai</p><p><a class="link-u" href="https://maps.app.goo.gl/LxxALHqsNsGpUrj29" target="_blank" rel="noopener">Get directions</a></p></div>
+    <div><h3>Opening hours</h3><ul class="ftr__hours"><li><span>Saturday to Thursday</span><span>9 AM – 10 PM</span></li><li><span>Friday</span><span>1 PM – 9 PM</span></li></ul></div>
+    <div><h3>Contact</h3><p><a class="link-u" href="tel:+971553396152">Mobile +971 55 339 6152</a><br><a class="link-u" href="tel:+97142664100">Landline 04 266 4100</a><br><a class="link-u" href="mailto:pearlescentadmin@dentalclinicuae.com">pearlescentadmin@dentalclinicuae.com</a></p>
+      <p class="ftr__social"><a class="soc" href="https://search.google.com/local/reviews?placeid=ChIJ5SzwML9dXz4R25X1gjaNSxk" target="_blank" rel="noopener" aria-label="Pearlecent on Google reviews" title="Google reviews"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z"/><path fill="#EA4335" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5L6.4 10C7.2 7.7 9.4 5.9 12 5.9z"/></svg></a><a class="soc" href="https://www.instagram.com/pearlescent_dental" target="_blank" rel="noopener" aria-label="Pearlecent on Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a><a class="soc" href="https://www.facebook.com/people/Pearlecent-SHifah-Medical-Centre/100090357010872/" target="_blank" rel="noopener" aria-label="Pearlecent on Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.4V21z"/></svg></a><a class="soc" href="https://www.tiktok.com/@pearlecentshifah" target="_blank" rel="noopener" aria-label="Pearlecent on TikTok" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.4 2.1 1.7 3.5 3.9 3.7v3a7 7 0 0 1-3.9-1.2v6.2A5.9 5.9 0 1 1 11.2 9v3.1a2.8 2.8 0 1 0 2.4 2.8V3z"/></svg></a></p></div>
+  </div>
+  <div class="ftr__base wrap"><p>© <span data-year>2026</span> Pearlecent Shifah Medical Center L.L.C. Results vary from person to person; your dentist explains the benefits, risks and alternatives of each treatment before it starts.</p>
+    <p><a href="../about.html">About</a><a href="../treatments.html">Treatments</a><a href=".././#visit">Contact</a></p></div>
+</footer>
+<a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
+<script>window.PEARL_LEAD = "../api/lead.php";</script>
+<script src="../assets/js/site.js?v=30" defer></script>
+<script>
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a'); if (!a || typeof gtag !== 'function') return;
+  var h = a.getAttribute('href') || '';
+  if (/wa\.me|whatsapp/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18518577261/LdJnCMf6nL0dEO2grP5E'});
+  } else if (/^tel:/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18518577261/huaICMWmor0dEO2grP5E'});
+  }
+}, true);
+document.addEventListener('submit', function () {
+  if (typeof gtag === 'function') gtag('event', 'conversion', {send_to: 'AW-18518577261/LdJnCMf6nL0dEO2grP5E'});
+}, true);
+</script>
+</body>
+</html>
