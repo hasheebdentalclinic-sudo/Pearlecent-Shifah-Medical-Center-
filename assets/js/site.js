@@ -1,6 +1,65 @@
 // Pearlecent site script. Everything is an enhancement: pages read and book without it.
 (() => {
   const WA = '971553396152';
+
+  // Where the visitor came from (first touch, kept 30 days). Never blocks the visitor.
+  const SRC_KEY = 'pearl_src';
+  const SRC_DAYS = 30;
+  const AD_KEYS = ['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term'];
+  const srcLabel = (a) => {
+    const us = (a.utm_source || '').toLowerCase(), um = (a.utm_medium || '').toLowerCase();
+    if (a.gclid || a.gbraid || a.wbraid || (us === 'google' && (um === 'cpc' || um === 'ppc'))) return 'Google Ads';
+    if (a.fbclid || ['facebook', 'instagram', 'fb', 'ig'].includes(us)) return 'Facebook/Instagram Ads';
+    let host = '';
+    try { host = a.referrer ? new URL(a.referrer).hostname.toLowerCase() : ''; } catch (e) { host = ''; }
+    if (host && /(^|\.)google\.[a-z.]{2,8}$/.test(host)) return 'Google Search (organic)';
+    if (host || us) return 'Other website';
+    return 'Direct';
+  };
+  const readSrc = () => {
+    try { const v = sessionStorage.getItem(SRC_KEY); if (v) return JSON.parse(v); } catch (e) { /* storage blocked */ }
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)pearl_src=([^;]*)/);
+      if (m) return JSON.parse(decodeURIComponent(m[1]));
+    } catch (e) { /* bad cookie */ }
+    return null;
+  };
+  const saveSrc = (a) => {
+    const json = JSON.stringify(a);
+    try { sessionStorage.setItem(SRC_KEY, json); } catch (e) { /* ignore */ }
+    try {
+      document.cookie = SRC_KEY + '=' + encodeURIComponent(json) + '; Max-Age=' + (SRC_DAYS * 86400) +
+        '; Path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+    } catch (e) { /* ignore */ }
+  };
+  const visitSource = (() => {
+    try {
+      const q = new URLSearchParams(location.search);
+      const fresh = {};
+      AD_KEYS.forEach((k) => { const v = (q.get(k) || '').trim(); if (v) fresh[k] = v.slice(0, 200); });
+      let ref = '';
+      try { if (document.referrer && new URL(document.referrer).host !== location.host) ref = document.referrer.slice(0, 300); } catch (e) { ref = ''; }
+      const old = readSrc();
+      const changed = old && AD_KEYS.some((k) => fresh[k] && fresh[k] !== old[k]);
+      if (old && old.source && !changed) { saveSrc(old); return old; }
+      const a = { ...fresh, referrer: ref, landing: location.pathname.slice(0, 200), ts: Date.now() };
+      a.source = srcLabel(a);
+      saveSrc(a);
+      return a;
+    } catch (e) { return null; }
+  })();
+  const addSource = (fd) => {
+    try {
+      const a = visitSource || readSrc();
+      if (!a) return;
+      const click = a.gclid || (a.gbraid ? 'gbraid:' + a.gbraid : '') || (a.wbraid ? 'wbraid:' + a.wbraid : '');
+      fd.set('source', a.source || '');
+      fd.set('gclid', click || '');
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].forEach((k) => fd.set(k, a[k] || ''));
+      fd.set('referrer', a.referrer || '');
+      fd.set('landing_page', a.landing || '');
+    } catch (e) { /* ignore */ }
+  };
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const y = document.querySelector('[data-year]');
@@ -61,6 +120,7 @@
     try {
       const url = window.PEARL_LEAD;
       if (!url) return;
+      addSource(fd);
       if (navigator.sendBeacon && navigator.sendBeacon(url, fd)) return;
       fetch(url, { method: 'POST', body: fd, keepalive: true, credentials: 'same-origin' }).catch(() => {});
     } catch (e) { /* ignore */ }
@@ -74,6 +134,17 @@
     if (a.dataset.leadDentist) fd.set('dentist', a.dataset.leadDentist);
     fd.set('page', location.pathname);
     sendLead(fd);
+  });
+  // phone call clicks are saved as leads too (the call itself is never delayed)
+  document.addEventListener('click', (ev) => {
+    try {
+      const a = ev.target.closest('a[href^="tel:"]');
+      if (!a) return;
+      const fd = new FormData();
+      fd.set('type', 'Phone call');
+      fd.set('page', location.pathname);
+      sendLead(fd);
+    } catch (e) { /* ignore */ }
   });
 
   // before / after comparison sliders

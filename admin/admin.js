@@ -4,6 +4,15 @@
     const f = e.target.closest('form[data-confirm]');
     if (f && !window.confirm(f.dataset.confirm)) e.preventDefault();
   });
+  // lead filters: the From/To dates only apply to "Custom dates"
+  document.querySelectorAll('[data-filters]').forEach((f) => {
+    const range = f.querySelector('[data-range]');
+    const custom = [...f.querySelectorAll('[data-custom]')];
+    const sync = () => custom.forEach((c) => { const on = range.value === 'custom'; c.hidden = !on; c.querySelector('input').disabled = !on; });
+    range.addEventListener('change', () => { sync(); if (range.value !== 'custom') f.requestSubmit ? f.requestSubmit() : f.submit(); });
+    custom.forEach((c) => c.querySelector('input').addEventListener('change', () => f.requestSubmit ? f.requestSubmit() : f.submit()));
+    sync();
+  });
   document.querySelectorAll('select[data-autosubmit]').forEach((s) => s.addEventListener('change', () => s.form.requestSubmit ? s.form.requestSubmit() : s.form.submit()));
   document.querySelectorAll('[data-drop]').forEach((zone) => {
     const input = zone.querySelector('input[type=file]');

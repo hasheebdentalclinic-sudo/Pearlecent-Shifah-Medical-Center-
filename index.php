@@ -231,7 +231,7 @@
 </footer>
 <a class="wa-float" href="https://wa.me/971553396152" target="_blank" rel="noopener" data-wa-float data-lead-type="Chat button" aria-label="Chat with Pearlecent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.5.4-1.3.1-1.3-.6V16A2.5 2.5 0 0 1 4 13.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 8.5h7M8.5 11.5h4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Chat with us</span></a>
 <script>window.PEARL_LEAD = "api/lead.php";</script>
-<script src="assets/js/site.js?v=30" defer></script>
+<script src="assets/js/site.js?v=31" defer></script>
 <script>
 document.addEventListener('click', function (e) {
   var a = e.target.closest('a'); if (!a || typeof gtag !== 'function') return;

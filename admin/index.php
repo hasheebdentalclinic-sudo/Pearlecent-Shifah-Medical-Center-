@@ -20,6 +20,23 @@ $TREATMENTS = ['General Dentistry', 'Restorative Dentistry', 'Cosmetic Dentistry
 $TITLES = ['General Dentist', 'Orthodontic Specialist', 'Medical Director & General Dentist'];
 $POSITIONS = ['50% 15%' => 'Top (face near the top)', '50% 25%' => 'Upper middle', '50% 40%' => 'Middle'];
 
+// Lead sources and types, as shown in the dashboard.
+const SRC = [
+    'google_ads' => ['Google Ads', 'Google Ads', '#1A73E8'],
+    'meta' => ['Facebook/Instagram', 'Facebook/Instagram Ads', '#C13584'],
+    'organic' => ['Google Search', 'Google Search (organic)', '#1E8E3E'],
+    'direct' => ['Direct', 'Direct', '#5F4B57'],
+    'other' => ['Other', 'Other website', '#E0A43A'],
+    'unknown' => ['Unknown', 'Unknown', '#C9B8C1'],
+];
+const LTYPES = [
+    'booking' => ['Booking form', ['Appointment request']],
+    'chat' => ['Chat button', ['Chat button', 'Treatment enquiry', 'Dentist question']],
+    'call' => ['Phone call', ['Phone call']],
+];
+const RANGES = ['today' => 'Today', '7d' => 'Last 7 days', '30d' => 'Last 30 days', '90d' => 'Last 90 days', 'all' => 'All time', 'custom' => 'Custom dates'];
+
+
 // ------------------------------------------------------------ sign in / out
 if (!$me) {
     $error = '';
@@ -62,9 +79,12 @@ if ($page === 'leads' && isset($_GET['export'])) {
     $out = fopen('php://output', 'w');
     fwrite($out, "\xEF\xBB\xBF");
     $safe = fn($v) => preg_match('/^[=+\-@\t\r]/', (string) $v) ? "'" . $v : (string) $v;
-    fputcsv($out, ['Date (Dubai)', 'Type', 'Name', 'Mobile', 'Treatment', 'Dentist', 'Preferred day', 'Preferred time', 'Status', 'Note', 'Page']);
+    fputcsv($out, ['Date (Dubai)', 'Type', 'Source', 'Name', 'Mobile', 'Treatment', 'Dentist', 'Preferred day', 'Preferred time', 'Status', 'Note', 'Page',
+                   'Landing page', 'Referrer', 'gclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term']);
     while ($r = $s->fetch()) {
-        fputcsv($out, array_map($safe, [dubai_time($r['created_at'], 'Y-m-d H:i'), $r['type'], $r['name'], $r['mobile'], $r['treatment'], $r['dentist'], $r['pref_day'], $r['pref_time'], $STATUSES[$r['status']] ?? $r['status'], $r['note'], $r['page']]));
+        fputcsv($out, array_map($safe, [dubai_time($r['created_at'], 'Y-m-d H:i'), $r['type'], $r['source'] ?: 'Unknown', $r['name'], $r['mobile'], $r['treatment'], $r['dentist'],
+            $r['pref_day'], $r['pref_time'], $STATUSES[$r['status']] ?? $r['status'], $r['note'], $r['page'],
+            $r['landing_page'], $r['referrer'], $r['gclid'], $r['utm_source'], $r['utm_medium'], $r['utm_campaign'], $r['utm_term']]));
     }
     exit;
 }
@@ -237,17 +257,90 @@ function move_row(string $table, int $id, string $dir): void
     foreach ($rows as $k => $rid) $u->execute([($k + 1) * 10, $rid]);
 }
 
-function lead_filters(): array
+function src_key(?string $label): string
 {
+    foreach (SRC as $k => $s) if ($s[1] === $label) return $k;
+    return $label ? 'other' : 'unknown';
+}
+
+// The filters from the address bar, cleaned. Used by the list, the cards, the chart and the CSV.
+function lead_params(): array
+{
+    $g = fn(string $k) => trim((string) ($_GET[$k] ?? ''));
+    $type = $g('type');
+    if ($type === 'requests') $type = 'booking';
+    if ($type === 'chats') $type = 'chat';
+    $okDate = fn(string $d) => preg_match('/^\d{4}-\d{2}-\d{2}$/', $d) && checkdate((int) substr($d, 5, 2), (int) substr($d, 8, 2), (int) substr($d, 0, 4)) ? $d : '';
+    $from = $okDate($g('from')); $to = $okDate($g('to'));
+    $range = $g('range');
+    if ($range === '' && ($from !== '' || $to !== '')) $range = 'custom';
+    if (!isset(RANGES[$range])) $range = '30d';
+    if ($range === 'custom' && $from === '' && $to === '') $range = '30d';
+    $src = $g('source');
+    return [
+        'range' => $range, 'from' => $range === 'custom' ? $from : '', 'to' => $range === 'custom' ? $to : '',
+        'source' => isset(SRC[$src]) ? $src : '',
+        'type' => isset(LTYPES[$type]) ? $type : '',
+        'treatment' => mb_substr($g('treatment'), 0, 120),
+        'status' => $g('status'), 'q' => mb_substr($g('q'), 0, 80),
+    ];
+}
+
+// First and last Dubai day of the chosen range (Y-m-d), and the matching UTC limits.
+function lead_range(array $f): array
+{
+    $tz = new DateTimeZone('Asia/Dubai');
+    $today = new DateTimeImmutable('today', $tz);
+    switch ($f['range']) {
+        case 'today': $a = $today; $b = $today; break;
+        case '7d': $a = $today->modify('-6 days'); $b = $today; break;
+        case '90d': $a = $today->modify('-89 days'); $b = $today; break;
+        case 'all':
+            $first = db()->query('SELECT MIN(created_at) FROM leads')->fetchColumn();
+            $a = $first ? (new DateTimeImmutable($first, new DateTimeZone('UTC')))->setTimezone($tz)->setTime(0, 0) : $today;
+            $b = $today; break;
+        case 'custom':
+            $a = $f['from'] !== '' ? new DateTimeImmutable($f['from'], $tz) : $today->modify('-29 days');
+            $b = $f['to'] !== '' ? new DateTimeImmutable($f['to'], $tz) : $today;
+            if ($b < $a) [$a, $b] = [$b, $a];
+            break;
+        default: $a = $today->modify('-29 days'); $b = $today;
+    }
+    $utc = new DateTimeZone('UTC');
+    return [$a->format('Y-m-d'), $b->format('Y-m-d'),
+            $a->setTimezone($utc)->format('Y-m-d H:i:s'), $b->modify('+1 day')->setTimezone($utc)->format('Y-m-d H:i:s')];
+}
+
+function lead_filters(array $skip = []): array
+{
+    $f = lead_params();
     $w = []; $a = [];
-    $type = (string) ($_GET['type'] ?? 'requests');
-    if ($type === 'requests') $w[] = "type = 'Appointment request'";
-    elseif ($type === 'chats') $w[] = "type <> 'Appointment request'";
-    $st = (string) ($_GET['status'] ?? '');
-    if ($st !== '') { $w[] = 'status = ?'; $a[] = $st; }
-    $q = trim((string) ($_GET['q'] ?? ''));
-    if ($q !== '') { $w[] = '(name LIKE ? OR mobile LIKE ? OR treatment LIKE ? OR dentist LIKE ?)'; $like = '%' . $q . '%'; array_push($a, $like, $like, $like, $like); }
-    return [$w ? 'WHERE ' . implode(' AND ', $w) : '', $a];
+    [, , $fromUtc, $toUtc] = lead_range($f);
+    $w[] = 'created_at >= ? AND created_at < ?'; array_push($a, $fromUtc, $toUtc);
+    if ($f['source'] !== '' && !in_array('source', $skip, true)) {
+        if ($f['source'] === 'unknown') $w[] = "(source IS NULL OR source = 'Unknown')";
+        else { $w[] = 'source = ?'; $a[] = SRC[$f['source']][1]; }
+    }
+    if ($f['type'] !== '') {
+        $types = LTYPES[$f['type']][1];
+        $w[] = 'type IN (' . implode(',', array_fill(0, count($types), '?')) . ')';
+        array_push($a, ...$types);
+    }
+    if ($f['treatment'] !== '') { $w[] = 'treatment = ?'; $a[] = $f['treatment']; }
+    if ($f['status'] !== '') { $w[] = 'status = ?'; $a[] = $f['status']; }
+    if ($f['q'] !== '') {
+        $w[] = '(name LIKE ? OR mobile LIKE ? OR treatment LIKE ? OR dentist LIKE ? OR gclid LIKE ? OR utm_campaign LIKE ?)';
+        $like = '%' . $f['q'] . '%'; array_push($a, $like, $like, $like, $like, $like, $like);
+    }
+    return ['WHERE ' . implode(' AND ', $w), $a];
+}
+
+// Query string for the current filters (empty values left out).
+function lead_qs(array $extra = []): string
+{
+    $f = lead_params();
+    if ($f['range'] !== 'custom') { unset($f['from'], $f['to']); }
+    return http_build_query(array_filter(['p' => 'leads'] + $extra + $f, fn($v) => $v !== '' && $v !== null));
 }
 
 function old(string $k, $fallback = '') { return $_SESSION['form'][$k] ?? $fallback; }
@@ -290,9 +383,9 @@ function shell_top(string $title, string $active, array $me): void
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Pearlecent">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="stylesheet" href="admin.css?v=2">
+<link rel="stylesheet" href="admin.css?v=3">
 <meta name="csrf" content="<?= h(csrf_token()) ?>">
-<script src="admin.js?v=2" defer></script>
+<script src="admin.js?v=3" defer></script>
 </head>
 <body class="adm">
 <aside class="side">
@@ -335,8 +428,8 @@ function login_view(string $error, string $username): void
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Pearlecent">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="stylesheet" href="admin.css?v=2">
-<script src="admin.js?v=2" defer></script>
+<link rel="stylesheet" href="admin.css?v=3">
+<script src="admin.js?v=3" defer></script>
 </head>
 <body class="adm adm--login">
 <main class="login">
@@ -569,6 +662,8 @@ if ($page === 'account') {
 }
 
 // ------------------------------------------------------------ leads (default)
+$F = lead_params();
+[$day1, $day2] = lead_range($F);
 $perPage = 30;
 $pg = max(1, (int) ($_GET['page'] ?? 1));
 [$where, $args] = lead_filters();
@@ -576,55 +671,142 @@ $cnt = $db->prepare("SELECT COUNT(*) FROM leads $where"); $cnt->execute($args); 
 $s = $db->prepare("SELECT * FROM leads $where ORDER BY id DESC LIMIT $perPage OFFSET " . (($pg - 1) * $perPage));
 $s->execute($args);
 $rows = $s->fetchAll();
-$dubaiMidnight = (new DateTime('today', new DateTimeZone('Asia/Dubai')))->setTimezone(new DateTimeZone('UTC'))->format('Y-m-d H:i:s');
-$weekAgo = gmdate('Y-m-d H:i:s', time() - 7 * 86400);
-$stat = fn(string $sql, array $a = []) => (function () use ($db, $sql, $a) { $q = $db->prepare($sql); $q->execute($a); return (int) $q->fetchColumn(); })();
-$req = "type = 'Appointment request'";
-$sToday = $stat("SELECT COUNT(*) FROM leads WHERE $req AND created_at >= ?", [$dubaiMidnight]);
-$sWeek = $stat("SELECT COUNT(*) FROM leads WHERE $req AND created_at >= ?", [$weekAgo]);
-$sNew = $stat("SELECT COUNT(*) FROM leads WHERE $req AND status = 'new'");
-$sChats = $stat("SELECT COUNT(*) FROM leads WHERE type <> 'Appointment request' AND created_at >= ?", [$weekAgo]);
-$type = (string) ($_GET['type'] ?? 'requests');
-$status = (string) ($_GET['status'] ?? '');
-$q = (string) ($_GET['q'] ?? '');
-$qs = http_build_query(array_filter(['p' => 'leads', 'type' => $type, 'status' => $status, 'q' => $q, 'page' => $pg > 1 ? $pg : null]));
+
+// Summary cards and chart: every filter except the source, so each source can be compared.
+[$wNoSrc, $aNoSrc] = lead_filters(['source']);
+$q = $db->prepare("SELECT COALESCE(NULLIF(source, ''), 'Unknown') AS src, date(created_at, '+4 hours') AS d, COUNT(*) AS n FROM leads $wNoSrc GROUP BY src, d");
+$q->execute($aNoSrc);
+$bySrc = array_fill_keys(array_keys(SRC), 0);
+$byDay = [];
+foreach ($q->fetchAll() as $r) {
+    $k = src_key($r['src']);
+    $bySrc[$k] += (int) $r['n'];
+    $byDay[$r['d']][$k] = ($byDay[$r['d']][$k] ?? 0) + (int) $r['n'];
+}
+$sumAll = array_sum($bySrc);
+$sNew = (int) $db->query("SELECT COUNT(*) FROM leads WHERE status = 'new' AND type = 'Appointment request'")->fetchColumn();
+
+// Top treatments and landing pages: all filters.
+$top = function (string $col) use ($db, $where, $args): array {
+    $t = $db->prepare("SELECT $col AS k, COUNT(*) AS n FROM leads $where AND COALESCE($col, '') <> '' GROUP BY $col ORDER BY n DESC, k LIMIT 8");
+    $t->execute($args);
+    return $t->fetchAll();
+};
+$topTreat = $top('treatment');
+$topLand = $top('landing_page');
+$treatOpts = $db->query("SELECT treatment FROM leads WHERE COALESCE(treatment, '') <> '' GROUP BY treatment ORDER BY COUNT(*) DESC, treatment LIMIT 60")->fetchAll(PDO::FETCH_COLUMN);
+if ($F['treatment'] !== '' && !in_array($F['treatment'], $treatOpts, true)) $treatOpts[] = $F['treatment'];
+
+// Leads per day, one colour per source (plain SVG, no outside scripts).
+function lead_chart(string $d1, string $d2, array $byDay): string
+{
+    $days = [];
+    $a = new DateTimeImmutable($d1); $b = new DateTimeImmutable($d2);
+    if ($a->diff($b)->days > 89) $a = $b->modify('-89 days');
+    for ($d = $a; $d <= $b; $d = $d->modify('+1 day')) $days[] = $d->format('Y-m-d');
+    $max = 1;
+    foreach ($days as $d) $max = max($max, array_sum($byDay[$d] ?? []));
+    $step = $max <= 5 ? 1 : (int) ceil($max / 4);
+    $top = $step * (int) ceil($max / $step);
+    $W = 720; $H = 220; $L = 30; $R = 8; $T = 10; $B = 26;
+    $cw = ($W - $L - $R) / count($days);
+    $bw = max(2, min(28, $cw * 0.7));
+    $y = fn(float $v) => $T + ($H - $T - $B) * (1 - $v / $top);
+    $o = '<svg class="chart" viewBox="0 0 ' . $W . ' ' . $H . '" role="img" aria-label="Leads per day by source">';
+    for ($v = 0; $v <= $top; $v += $step) {
+        $yy = round($y($v), 1);
+        $o .= '<line x1="' . $L . '" x2="' . ($W - $R) . '" y1="' . $yy . '" y2="' . $yy . '" stroke="#EDE4E9" stroke-width="1"/>'
+            . '<text x="' . ($L - 6) . '" y="' . ($yy + 4) . '" text-anchor="end" font-size="11" fill="#8A7682">' . $v . '</text>';
+    }
+    $every = max(1, (int) ceil(count($days) / 8));
+    foreach ($days as $i => $d) {
+        $x = $L + $i * $cw + ($cw - $bw) / 2;
+        $base = 0;
+        foreach (SRC as $k => $meta) {
+            $n = $byDay[$d][$k] ?? 0;
+            if (!$n) continue;
+            $y1 = $y($base + $n); $y0 = $y($base);
+            $o .= '<rect x="' . round($x, 1) . '" y="' . round($y1, 1) . '" width="' . round($bw, 1) . '" height="' . round($y0 - $y1, 1) . '" fill="' . $meta[2] . '" rx="1.5">'
+                . '<title>' . h(date('j M', strtotime($d)) . ' · ' . $meta[0] . ': ' . $n) . '</title></rect>';
+            $base += $n;
+        }
+        $last = count($days) - 1;
+        if (($i % $every === 0 && ($last - $i >= max(1, intdiv($every, 2)) || $i === $last)) || $i === $last) {
+            $o .= '<text x="' . round($x + $bw / 2, 1) . '" y="' . ($H - 8) . '" text-anchor="middle" font-size="11" fill="#8A7682">' . h(date('j M', strtotime($d))) . '</text>';
+        }
+    }
+    return $o . '</svg>';
+}
+
+$qs = lead_qs($pg > 1 ? ['page' => $pg] : []);
 shell_top('Leads', 'leads', $me);
+$rangeText = $day1 === $day2 ? date('j M Y', strtotime($day1)) : date('j M', strtotime($day1)) . ' – ' . date('j M Y', strtotime($day2));
 ?>
   <header class="ph">
-    <div><h1>Leads</h1><p class="muted">Booking requests sent from the website before visitors continue to WhatsApp.</p></div>
-    <a class="btn btn--ghost" href="?<?= h(http_build_query(['p' => 'leads', 'type' => $type, 'status' => $status, 'q' => $q, 'export' => 1])) ?>"><?= icon('down2') ?>Export CSV</a>
+    <div><h1>Leads</h1><p class="muted">Bookings, chat clicks and phone call clicks from the website, and where each visitor came from.</p></div>
+    <a class="btn btn--ghost" href="?<?= h(lead_qs(['export' => 1])) ?>"><?= icon('down2') ?>Export CSV</a>
   </header>
   <?php if (!(int) $db->query('SELECT COUNT(*) FROM push_subs')->fetchColumn()): ?>
   <a class="nudge card" href="?p=account#app"><span class="nudge__ic">🔔</span><span><b>Get new leads on your phone</b><small>Install the Pearlecent app and turn on notifications.</small></span><span class="nudge__go">Set up →</span></a>
   <?php endif; ?>
-  <div class="kpis">
-    <div class="kpi"><b><?= $sToday ?></b><span>Requests today</span></div>
-    <div class="kpi"><b><?= $sWeek ?></b><span>Last 7 days</span></div>
-    <div class="kpi kpi--hot"><b><?= $sNew ?></b><span>Waiting (new)</span></div>
-    <div class="kpi"><b><?= $sChats ?></b><span>Chat clicks, 7 days</span></div>
-  </div>
-  <form class="filters card" method="get">
+
+  <form class="filters filters--dash card" method="get" data-filters>
     <input type="hidden" name="p" value="leads">
-    <label class="fl"><span>Search</span><input type="search" name="q" value="<?= h($q) ?>" placeholder="Name, mobile, treatment"></label>
-    <label class="fl"><span>Show</span><select name="type" data-autosubmit>
-      <option value="requests"<?= $type === 'requests' ? ' selected' : '' ?>>Appointment requests</option>
-      <option value="chats"<?= $type === 'chats' ? ' selected' : '' ?>>Chat &amp; enquiry clicks</option>
-      <option value="all"<?= $type === 'all' ? ' selected' : '' ?>>Everything</option></select></label>
+    <label class="fl"><span>Dates</span><select name="range" data-range>
+      <?php foreach (RANGES as $k => $l): ?><option value="<?= $k ?>"<?= $F['range'] === $k ? ' selected' : '' ?>><?= $l ?></option><?php endforeach; ?></select></label>
+    <label class="fl fl--date" data-custom><span>From</span><input type="date" name="from" value="<?= h($F['from'] ?: $day1) ?>" max="<?= h(date('Y-m-d')) ?>"></label>
+    <label class="fl fl--date" data-custom><span>To</span><input type="date" name="to" value="<?= h($F['to'] ?: $day2) ?>"></label>
+    <label class="fl"><span>Source</span><select name="source" data-autosubmit><option value="">All sources</option>
+      <?php foreach (SRC as $k => $m): ?><option value="<?= $k ?>"<?= $F['source'] === $k ? ' selected' : '' ?>><?= h($m[0]) ?></option><?php endforeach; ?></select></label>
+    <label class="fl"><span>Lead type</span><select name="type" data-autosubmit><option value="">All types</option>
+      <?php foreach (LTYPES as $k => $m): ?><option value="<?= $k ?>"<?= $F['type'] === $k ? ' selected' : '' ?>><?= h($m[0]) ?></option><?php endforeach; ?></select></label>
+    <label class="fl"><span>Treatment</span><select name="treatment" data-autosubmit><option value="">All treatments</option>
+      <?php foreach ($treatOpts as $t): ?><option value="<?= h($t) ?>"<?= $F['treatment'] === $t ? ' selected' : '' ?>><?= h($t) ?></option><?php endforeach; ?></select></label>
     <label class="fl"><span>Status</span><select name="status" data-autosubmit><option value="">Any status</option>
-      <?php foreach ($STATUSES as $k => $l): ?><option value="<?= $k ?>"<?= $status === $k ? ' selected' : '' ?>><?= $l ?></option><?php endforeach; ?></select></label>
-    <button class="btn" type="submit">Filter</button>
+      <?php foreach ($STATUSES as $k => $l): ?><option value="<?= $k ?>"<?= $F['status'] === $k ? ' selected' : '' ?>><?= $l ?></option><?php endforeach; ?></select></label>
+    <label class="fl fl--q"><span>Search</span><input type="search" name="q" value="<?= h($F['q']) ?>" placeholder="Name, mobile, treatment, gclid"></label>
+    <div class="filters__btns"><button class="btn" type="submit">Apply</button><a class="btn btn--ghost" href="?p=leads">Reset</a></div>
   </form>
 
-  <?php if (!$rows): ?><p class="empty card">No leads here yet. When someone presses “Request appointment” on the website, it appears here.</p><?php endif; ?>
+  <p class="muted tiny range-note"><?= h($rangeText) ?> · <?= $sNew ?> booking request<?= $sNew === 1 ? '' : 's' ?> waiting (new)</p>
+  <div class="kpis kpis--5">
+    <div class="kpi kpi--hot"><b><?= $sumAll ?></b><span>Total leads</span></div>
+    <div class="kpi"><b><?= $bySrc['google_ads'] ?></b><span><i class="dot src-google_ads"></i>Google Ads</span></div>
+    <div class="kpi"><b><?= $bySrc['meta'] ?></b><span><i class="dot src-meta"></i>Facebook/Instagram</span></div>
+    <div class="kpi"><b><?= $bySrc['organic'] ?></b><span><i class="dot src-organic"></i>Google Search</span></div>
+    <div class="kpi"><b><?= $bySrc['direct'] ?></b><span><i class="dot src-direct"></i>Direct</span></div>
+  </div>
+
+  <section class="card chartbox">
+    <h2>Leads per day</h2>
+    <div class="chart__scroll"><?= lead_chart($day1, $day2, $byDay) ?></div>
+    <p class="legend"><?php foreach (SRC as $k => $m): ?><span><i class="dot src-<?= $k ?>"></i><?= h($m[0]) ?> <b><?= $bySrc[$k] ?></b></span><?php endforeach; ?></p>
+  </section>
+
+  <div class="tops">
+    <section class="card"><h2>Top treatments requested</h2>
+      <?php if (!$topTreat): ?><p class="muted tiny">No treatment chosen in these leads.</p><?php else: ?>
+      <table class="tbl"><thead><tr><th>Treatment</th><th>Leads</th></tr></thead><tbody>
+      <?php foreach ($topTreat as $r): ?><tr><td><a href="?<?= h(http_build_query(['p' => 'leads', 'treatment' => $r['k']] + array_filter(['range' => $F['range'], 'from' => $F['from'], 'to' => $F['to'], 'source' => $F['source'], 'type' => $F['type']]))) ?>"><?= h($r['k']) ?></a></td><td><?= (int) $r['n'] ?></td></tr><?php endforeach; ?>
+      </tbody></table><?php endif; ?></section>
+    <section class="card"><h2>Top landing pages</h2>
+      <?php if (!$topLand): ?><p class="muted tiny">No landing pages recorded yet (older leads do not have one).</p><?php else: ?>
+      <table class="tbl"><thead><tr><th>First page seen</th><th>Leads</th></tr></thead><tbody>
+      <?php foreach ($topLand as $r): ?><tr><td class="tiny"><?= h($r['k']) ?></td><td><?= (int) $r['n'] ?></td></tr><?php endforeach; ?>
+      </tbody></table><?php endif; ?></section>
+  </div>
+
+  <h2 class="list-h"><?= $total ?> lead<?= $total === 1 ? '' : 's' ?></h2>
+  <?php if (!$rows): ?><p class="empty card">No leads match these filters.</p><?php endif; ?>
   <div class="llist">
-  <?php foreach ($rows as $r): $wa = wa_number($r['mobile']); ?>
+  <?php foreach ($rows as $r): $wa = wa_number($r['mobile']); $sk = src_key($r['source'] ?? null); ?>
     <article class="card lead st-<?= h($r['status']) ?>">
       <header class="lead__top">
         <div>
-          <h3><?= $r['name'] !== '' && $r['name'] !== null ? h($r['name']) : '<span class="muted">No name given</span>' ?></h3>
+          <h3><?= $r['name'] !== '' && $r['name'] !== null ? h($r['name']) : '<span class="muted">' . h($r['type'] === 'Phone call' ? 'Phone call click' : 'No name given') . '</span>' ?></h3>
           <p class="muted tiny"><?= h(dubai_time($r['created_at'])) ?> · <?= h($r['type']) ?></p>
         </div>
-        <span class="pill pill--<?= h($r['status']) ?>"><?= h($STATUSES[$r['status']] ?? $r['status']) ?></span>
+        <span class="lead__tags"><span class="sbadge src-<?= $sk ?>"><?= h(SRC[$sk][0]) ?></span><span class="pill pill--<?= h($r['status']) ?>"><?= h($STATUSES[$r['status']] ?? $r['status']) ?></span></span>
       </header>
       <dl class="lead__dl">
         <?php if ($r['mobile']): ?><div><dt>Mobile</dt><dd><a href="tel:<?= h(preg_replace('/[^0-9+]/', '', $r['mobile'])) ?>"><?= h($r['mobile']) ?></a></dd></div><?php endif; ?>
@@ -633,6 +815,15 @@ shell_top('Leads', 'leads', $me);
         <?php if ($r['pref_day'] || $r['pref_time']): ?><div><dt>Preferred</dt><dd><?= h(trim(($r['pref_day'] ?: 'Any day') . ' · ' . ($r['pref_time'] ?: 'Any time'))) ?></dd></div><?php endif; ?>
         <?php if ($r['page']): ?><div><dt>Page</dt><dd class="tiny"><?= h($r['page']) ?></dd></div><?php endif; ?>
       </dl>
+      <details class="lead__src">
+        <summary>Source details</summary>
+        <dl class="lead__dl">
+          <div><dt>Source</dt><dd><?= h($r['source'] ?: 'Unknown') ?></dd></div>
+          <?php foreach (['gclid' => 'gclid', 'utm_source' => 'utm_source', 'utm_medium' => 'utm_medium', 'utm_campaign' => 'utm_campaign', 'utm_term' => 'utm_term', 'referrer' => 'Referrer', 'landing_page' => 'Landing page'] as $c => $l): ?>
+          <div><dt><?= h($l) ?></dt><dd class="tiny"><?= ($r[$c] ?? '') !== '' && $r[$c] !== null ? h($r[$c]) : '<span class="muted">–</span>' ?></dd></div>
+          <?php endforeach; ?>
+        </dl>
+      </details>
       <div class="lead__acts">
         <?php if ($r['mobile']): ?><a class="ib" href="tel:<?= h(preg_replace('/[^0-9+]/', '', $r['mobile'])) ?>"><?= icon('call') ?><span>Call</span></a><?php endif; ?>
         <?php if ($wa): ?><a class="ib ib--wa" href="https://wa.me/<?= h($wa) ?>?text=<?= rawurlencode('Hello ' . ($r['name'] ?: '') . ', this is Pearlecent Shifah Medical Center about your appointment request.') ?>" target="_blank" rel="noopener"><?= icon('chat') ?><span>WhatsApp</span></a><?php endif; ?>
@@ -652,7 +843,7 @@ shell_top('Leads', 'leads', $me);
   </div>
   <?php $pages = (int) ceil($total / $perPage); if ($pages > 1): ?>
   <nav class="pager" aria-label="Pages">
-    <?php for ($i = 1; $i <= $pages; $i++): ?><a class="<?= $i === $pg ? 'is-on' : '' ?>" href="?<?= h(http_build_query(['p' => 'leads', 'type' => $type, 'status' => $status, 'q' => $q, 'page' => $i])) ?>"><?= $i ?></a><?php endfor; ?>
+    <?php for ($i = 1; $i <= $pages; $i++): ?><a class="<?= $i === $pg ? 'is-on' : '' ?>" href="?<?= h(lead_qs(['page' => $i])) ?>"><?= $i ?></a><?php endfor; ?>
   </nav>
   <?php endif; ?>
 <?php

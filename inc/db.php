@@ -76,6 +76,7 @@ function migrate(PDO $db): void
         page TEXT, ip_hash TEXT, user_agent TEXT,
         status TEXT NOT NULL DEFAULT 'new', note TEXT)");
     $db->exec("CREATE INDEX IF NOT EXISTS ix_leads_created ON leads(created_at)");
+    migrate_lead_source($db);
     $db->exec("CREATE TABLE IF NOT EXISTS dentists (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         slug TEXT NOT NULL UNIQUE,
@@ -111,6 +112,25 @@ function migrate(PDO $db): void
        ->execute([$a['username'], $a['hash'], $t]);
     $db->exec("INSERT INTO meta (k, v) VALUES ('seeded', '1')");
     $db->commit();
+}
+
+// Adds the traffic-source columns to leads. Existing rows are kept; they get source = 'Unknown'.
+function migrate_lead_source(PDO $db): void
+{
+    $have = array_column($db->query('PRAGMA table_info(leads)')->fetchAll(), 'name');
+    $cols = ['source' => "TEXT NOT NULL DEFAULT 'Unknown'", 'gclid' => 'TEXT', 'utm_source' => 'TEXT', 'utm_medium' => 'TEXT',
+             'utm_campaign' => 'TEXT', 'utm_term' => 'TEXT', 'referrer' => 'TEXT', 'landing_page' => 'TEXT'];
+    $missing = array_diff_key($cols, array_flip($have));
+    if ($missing) {
+        // One safety copy of the database before the change.
+        $file = data_dir() . '/pearlecent.sqlite';
+        $bak = $file . '.before-source-' . gmdate('Ymd-His') . '.bak';
+        if (is_file($file) && filesize($file) > 0) { @copy($file, $bak); @chmod($bak, 0640); }
+        $db->beginTransaction();
+        foreach ($missing as $c => $def) $db->exec("ALTER TABLE leads ADD COLUMN $c $def");
+        $db->commit();
+    }
+    $db->exec("CREATE INDEX IF NOT EXISTS ix_leads_source ON leads(source, created_at)");
 }
 
 function client_ip(): string { return (string) ($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0'); }

@@ -28,7 +28,7 @@ function field(string $k, int $max): string
     return mb_substr($v, 0, $max);
 }
 
-$types = ['Appointment request', 'Chat button', 'Treatment enquiry', 'Dentist question'];
+$types = ['Appointment request', 'Chat button', 'Treatment enquiry', 'Dentist question', 'Phone call'];
 $type = field('type', 40);
 if (!in_array($type, $types, true)) $type = 'Appointment request';
 
@@ -43,6 +43,42 @@ $lead = [
     'page' => field('page', 200),
 ];
 
+// Where the visitor came from (sent by site.js; every value is checked and shortened).
+function clean_url(string $k, int $max): string
+{
+    $v = field($k, $max);
+    if ($v === '') return '';
+    if ($k === 'landing_page') return preg_match('#^/[A-Za-z0-9/._~%-]*$#', $v) ? $v : '';
+    $p = parse_url($v);
+    return ($p && in_array(strtolower($p['scheme'] ?? ''), ['http', 'https'], true) && !empty($p['host'])) ? $v : '';
+}
+function token(string $k, int $max): string
+{
+    return preg_replace('/[^A-Za-z0-9._~:+\-\/ |%()=,&@!]/', '', field($k, $max)) ?? '';
+}
+$att = [
+    'gclid' => token('gclid', 200),
+    'utm_source' => token('utm_source', 100),
+    'utm_medium' => token('utm_medium', 100),
+    'utm_campaign' => token('utm_campaign', 150),
+    'utm_term' => token('utm_term', 150),
+    'referrer' => clean_url('referrer', 300),
+    'landing_page' => clean_url('landing_page', 200),
+];
+$SOURCES = ['Google Ads', 'Facebook/Instagram Ads', 'Google Search (organic)', 'Other website', 'Direct'];
+$source = field('source', 40);
+if (!in_array($source, $SOURCES, true)) {
+    // Old cached script or a bad value: work it out here with the same rules.
+    $us = strtolower($att['utm_source']); $um = strtolower($att['utm_medium']);
+    $rh = strtolower((string) parse_url($att['referrer'], PHP_URL_HOST));
+    if ($att['gclid'] !== '' || ($us === 'google' && in_array($um, ['cpc', 'ppc'], true))) $source = 'Google Ads';
+    elseif (in_array($us, ['facebook', 'instagram', 'fb', 'ig'], true)) $source = 'Facebook/Instagram Ads';
+    elseif ($rh !== '' && preg_match('/(^|\.)google\.[a-z.]{2,8}$/', $rh)) $source = 'Google Search (organic)';
+    elseif ($rh !== '' || $us !== '') $source = 'Other website';
+    elseif (isset($_POST['source'])) $source = 'Direct';
+    else $source = 'Unknown';
+}
+
 $db = db();
 $iph = ip_hash();
 // At most 15 saved leads per visitor per hour.
@@ -50,10 +86,12 @@ $recent = $db->prepare("SELECT COUNT(*) FROM leads WHERE ip_hash = ? AND created
 $recent->execute([$iph, gmdate('Y-m-d H:i:s', time() - 3600)]);
 if ((int) $recent->fetchColumn() >= 15) { http_response_code(429); exit; }
 
-$db->prepare("INSERT INTO leads (created_at,type,name,mobile,treatment,dentist,pref_day,pref_time,page,ip_hash,user_agent,status)
-              VALUES (?,?,?,?,?,?,?,?,?,?,?,'new')")
+$db->prepare("INSERT INTO leads (created_at,type,name,mobile,treatment,dentist,pref_day,pref_time,page,ip_hash,user_agent,status,
+                                  source,gclid,utm_source,utm_medium,utm_campaign,utm_term,referrer,landing_page)
+              VALUES (?,?,?,?,?,?,?,?,?,?,?,'new',?,?,?,?,?,?,?,?)")
    ->execute([now_utc(), $lead['type'], $lead['name'], $lead['mobile'], $lead['treatment'], $lead['dentist'],
-              $lead['pref_day'], $lead['pref_time'], $lead['page'], $iph, mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 200)]);
+              $lead['pref_day'], $lead['pref_time'], $lead['page'], $iph, mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 200),
+              $source, $att['gclid'], $att['utm_source'], $att['utm_medium'], $att['utm_campaign'], $att['utm_term'], $att['referrer'], $att['landing_page']]);
 
 $lead['id'] = (int) $db->lastInsertId();
 
